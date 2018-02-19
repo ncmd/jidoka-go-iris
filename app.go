@@ -5,7 +5,7 @@ import (
 )
 
 // Serve using a host:port form.
-var addr = iris.Addr("0.0.0.0:8000")
+var addr = iris.Addr("0.0.0.0:443")
 
 func main() {
 	app := iris.New()

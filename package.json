@@ -9,13 +9,14 @@
   },
   "config": {
     "servername":"jidoka-go-iris",
-    "servport":"8000"
+    "servport":"443"
   },
   "scripts": {
     "start": "server/server",
     "docker-build": "docker build -t $npm_package_config_servername .",
     "docker-run":"docker stop $(docker ps -a -q) && docker rm $(docker ps -a -q) && docker run -p $npm_package_config_servport:$npm_package_config_servport  $npm_package_config_servername",
     "heroku-destroy": "heroku apps:destroy --app $npm_package_config_servername --confirm $npm_package_config_servername",
+    "heroku-docker":"heroku container:push app",
     "heroku-replace": "heroku apps:destroy --app $npm_package_config_servername --confirm $npm_package_config_servername && git init && heroku apps:create $npm_package_config_servername && git add . && git commit -am \"Init\" && git push heroku master",
     "heroku-init": "heroku apps:create $npm_package_config_servername && git add . && git commit -am \"Init\" && git push heroku master",
     "heroku-deploy": "npm run build && git add . && git commit -am \"Deploy to Heroku\" && git push heroku master",
