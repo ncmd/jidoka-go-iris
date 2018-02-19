@@ -1,0 +1,10 @@
+{
+  "name": "Jidoka Golang Backend",
+  "description": "Golang Iris",
+  "keywords": [
+    "go"
+  ],
+  "image": "heroku/go:latest",
+  "website": "http://github.com/ncmd/jidoka-go-iris",
+  "repository": "http://github.com/ncmd/jidoka-go-iris"
+}

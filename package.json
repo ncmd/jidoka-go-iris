@@ -1,0 +1,29 @@
+{
+  "name": "jidoka-go-iris",
+  "homepage": "jidoka-go-iris.herokuapp.com",
+  "version": "0.1.0",
+  "private": true,
+  "engines": {
+    "node": "latest",
+    "npm": "latest"
+  },
+  "config": {
+    "servername":"jidoka-go-iris",
+    "servport":"8000"
+  },
+  "scripts": {
+    "start": "server/server",
+    "docker-build": "docker build -t $npm_package_config_servername .",
+    "docker-run":"docker stop $(docker ps -a -q) && docker rm $(docker ps -a -q) && docker run -p $npm_package_config_servport:$npm_package_config_servport  $npm_package_config_servername",
+    "heroku-destroy": "rm -rf .git && heroku apps:destroy --app $npm_package_config_servername --confirm $npm_package_config_servername",
+    "heroku-replace": "rm -rf .git && heroku apps:destroy --app $npm_package_config_servername --confirm $npm_package_config_servername && git init && heroku apps:create $npm_package_config_servername && git add . && git commit -am \"Init\" && git push heroku master",
+    "heroku-init": "rm -rf .git && git init && heroku apps:create $npm_package_config_servername && git add . && git commit -am \"Init\" && git push heroku master",
+    "heroku-deploy": "npm run build && git add . && git commit -am \"Deploy to Heroku\" && git push heroku master",
+    "client": "npm run start --prefix client",
+    "build": "npm run build --prefix client && go build -o server/server server/*.go",
+    "server": "server/server",
+    "dev": "npm run build && concurrently \"npm run server\" \"npm run client\"",
+    "dev-latest": "brew update && brew upgrade && sudo npm install -g npm && npm run build && concurrently \"npm run server\" \"npm run client\"",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
+  }
+}
