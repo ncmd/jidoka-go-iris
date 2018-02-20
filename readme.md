@@ -4,7 +4,7 @@
     * 🐳 Dockerized Golang Webapp
     * Uses Iris Web Framework
     * Premade Iris RESTAPI
-    * Uses 'dep' Package manager
+    * Uses 'dep' - Go Package manager
     * Uses Node.js for easy deployment scripts ❤️
     * Deployable to Heroku (Supports Free Teir)
     * Uses Multi-Stage Builds to create a 33MB Alpine Linux Image!
@@ -17,25 +17,28 @@
 ```bash
 $ brew update && brew upgrade && brew install node
 ```
-
-2. Install Docker 🐳
+2. Install Dep
+```bash
+$ brew install dep
+```
+3. Install Docker 🐳
     * https://www.docker.com/get-docker
-3. Manually configure "servername" Environment Variable in 'package.json' file
+4. Manually configure "servername" Environment Variable in 'package.json' file
     * <project_dir>/package.json
     * "config" - "servername":"<custom_server_name>"
-4. Login to Heroku
+5. Login to Heroku
 ```bash
 $ heroku container:login
-```
-5. Build/Rebuild and Deploy/Redeploy App to Heroku
-* 🔥⚠️ WARNING ⚠️🔥 - This script is set to remove all existing docker containers & images
-```bash
-$ npm run deploy
 ```
 6. Run Locally
 * 🔥⚠️ WARNING ⚠️🔥 - This script is set to remove all existing docker containers & images
 ```bash
 $ npm run dev
+```
+7. Build/Rebuild and Deploy/Redeploy App to Heroku
+* 🔥⚠️ WARNING ⚠️🔥 - This script is set to remove all existing docker containers & images
+```bash
+$ npm run deploy
 ```
 
 ## Details
