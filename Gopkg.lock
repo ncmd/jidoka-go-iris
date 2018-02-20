@@ -198,6 +198,12 @@
 
 [[projects]]
   branch = "master"
+  name = "github.com/valyala/tcplisten"
+  packages = ["."]
+  revision = "ceec8f93295a060cdb565ec25e4ccf17941dbd55"
+
+[[projects]]
+  branch = "master"
   name = "golang.org/x/crypto"
   packages = [
     "acme",
@@ -235,6 +241,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "7492928e7fa54a2aac690b9257adce61880c66934f9d227131068d32479d3aab"
+  inputs-digest = "abe9858653bcb3ccaa545b34d4f1f6461242b4ad4b88863363f0ba5dd2eb248a"
   solver-name = "gps-cdcl"
   solver-version = 1

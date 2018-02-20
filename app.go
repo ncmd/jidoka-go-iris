@@ -5,6 +5,7 @@ import (
 	"github.com/kataras/iris/mvc"
 	"github.com/valyala/tcplisten"
 	"os"
+	"log"
 )
 
 func main() {
@@ -23,18 +24,18 @@ func main() {
 		FastOpen:    true,
 	}
 
+	// tcp4 for ipv4 TCP listener; or tcp6 or ipv6
 	l, err := listenerCfg.NewListener("tcp4", ":"+port)
 	if err != nil {
 		app.Logger().Fatal(err)
 	}
 
-
-
+	// Watch for template changes and reload when edited
 	pugEngine := iris.Pug("./templates", ".jade")
 	pugEngine.Reload(true) // <--- set to true to re-build the templates on each request.
 	app.RegisterView(pugEngine)
 
-	// Creating MVC Controller with path "/api"
+	// Creating MVC Controller
 	mvc.New(app).Handle(new(APIController))
 
 	// Register the templates/**.html as django and reload them on each request
@@ -45,19 +46,33 @@ func main() {
 	// GET: http://localhost:8000/profile/myname/article/42
 	app.Get("/profile/{name:string}/article/{id:int}", iris.Gzip, article)
 
-	// Now listening on: http://localhost:3000
-	// Application started. Press CTRL+C to shut down.
+	// Shutdown Callback
+	app.ConfigureHost(func(h *iris.Supervisor) {
+		h.RegisterOnShutdown(func() {
+			println("💀Server Terminated 💀")
+		})
+	})
+
+	// Error Handling Client Error
+	app.OnErrorCode(iris.StatusNotFound, notFound)
+	// Error Handling Internal Error
+	app.OnErrorCode(iris.StatusInternalServerError, internalServerError)
+
+	log.Fatal(app.Run(iris.Listener(l)))
 	app.Run(iris.Listener(l))
-	//log.Fatal(app.Run(addr))
-	//app.Run(addr)
+
 }
 
 // Creating MVC Controller Type
 type APIController struct {}
 
+func emptyHandler(ctx iris.Context) {
+	ctx.Writef("Hello from subdomain: %s , you're in path:  %s", ctx.Subdomain(), ctx.Path())
+}
+
 // GET: /
 func (c *APIController) Get() string {
-	return "Welcome! To use api use /api"
+	return "Welcome! Interact with Jidoka API using /api"
 }
 
 // GET: /api
@@ -75,7 +90,6 @@ func (c *APIController) GetApiHello() interface{} {
 	return map[string]string{"message": "Hello Iris!"}
 }
 
-
 func article(ctx iris.Context) {
 	// retrieve the dynamic path parameters.
 	var (
@@ -91,3 +105,11 @@ func article(ctx iris.Context) {
 	ctx.View("article.html")
 }
 
+// Error Handling for Internal Server Error
+func internalServerError(ctx iris.Context) {
+	ctx.WriteString("Oops something went wrong, try again")
+}
+func notFound(ctx iris.Context) {
+	// when 404 then render the template $views_dir/errors/404.html
+	ctx.WriteString("Error 404 - Content does not in API")
+}
