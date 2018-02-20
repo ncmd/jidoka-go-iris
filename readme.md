@@ -48,14 +48,10 @@ $ npm run dev
 
 ## Developer Notes
     * Rename a go executable:
-    ```bash
-    $ go build -o apple *.go
-    ```
+    -- $ go build -o apple *.go
     * If you do rename, be sure to update the 'Procfile' and 'Dockerfile'
     * When managing dependancies use 'dep' - https://golang.github.io/dep/docs/introduction.html
-    ```bash
-    $ dep ensure -add github.com/foo/bar
-    $ dep ensure -update github.com/foo/bar
-    ```
+    -- $ dep ensure -add github.com/foo/bar
+    -- $ dep ensure -update github.com/foo/bar
 
 
