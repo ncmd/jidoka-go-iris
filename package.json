@@ -1,8 +1,8 @@
 {
   "name": "jidoka-go-iris",
   "homepage": "jidoka-go-iris.herokuapp.com",
-  "version": "0.2.0",
-  "private": false,
+  "version": "0.3.0",
+  "private": true,
   "engines": {
     "node": "latest",
     "npm": "latest"
@@ -19,7 +19,6 @@
     "heroku-replace": "heroku apps:destroy --app $npm_package_config_servername --confirm $npm_package_config_servername && git init && heroku create $npm_package_config_servername && heroku container:push web && heroku open && heroku logs",
     "docker-build": "docker build -t $npm_package_config_servername .",
     "docker-clean":"docker rm $(docker ps -a -q) -f ; docker rmi $(docker images -q) -f",
-    "dev-latest": "brew update && brew upgrade && sudo npm install -g npm",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
+    "dev-latest": "brew update && brew upgrade && sudo npm install -g npm"
   }
 }
