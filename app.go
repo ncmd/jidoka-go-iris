@@ -3,8 +3,8 @@ package main
 import (
 	"github.com/kataras/iris"
 	"github.com/kataras/iris/mvc"
+	"github.com/valyala/tcplisten"
 	"os"
-	"log"
 )
 
 func main() {
@@ -15,10 +15,19 @@ func main() {
 		port = "8000" // Setting a Default port to 8000 to be used locally
 	}
 
-	// Serve using a host:port form.
-	var addr = iris.Addr("0.0.0.0:"+port)
-
 	app := iris.New()
+
+	listenerCfg := tcplisten.Config{
+		ReusePort:   true,
+		DeferAccept: true,
+		FastOpen:    true,
+	}
+
+	l, err := listenerCfg.NewListener("tcp4", ":"+port)
+	if err != nil {
+		app.Logger().Fatal(err)
+	}
+
 
 
 	pugEngine := iris.Pug("./templates", ".jade")
@@ -32,33 +41,37 @@ func main() {
 	// so changes can be reflected, set to false on production.
 	app.RegisterView(iris.Django("./templates", ".html").Reload(true))
 
-	//// GET: http://localhost:8000
-	//app.Get("/", index)
 
 	// GET: http://localhost:8000/profile/myname/article/42
 	app.Get("/profile/{name:string}/article/{id:int}", iris.Gzip, article)
 
 	// Now listening on: http://localhost:3000
 	// Application started. Press CTRL+C to shut down.
-	log.Fatal(app.Run(addr))
-	app.Run(addr)
+	app.Run(iris.Listener(l))
+	//log.Fatal(app.Run(addr))
+	//app.Run(addr)
 }
 
 // Creating MVC Controller Type
 type APIController struct {}
 
-// GET: /api
+// GET: /
 func (c *APIController) Get() string {
+	return "Welcome! To use api use /api"
+}
+
+// GET: /api
+func (c *APIController) GetApi() string {
 	return "Welcome to Jidoka API"
 }
 
-// GET: /api/{name:string}
-func (c *APIController) GetBy(name string) string {
+// GET: /api/{string}
+func (c *APIController) GetApiBy(name string) string {
 	return "Hello " + name
 }
 
-
-func (c *APIController) GetHello() interface{} {
+// GET: /api/hello
+func (c *APIController) GetApiHello() interface{} {
 	return map[string]string{"message": "Hello Iris!"}
 }
 
@@ -78,6 +91,3 @@ func article(ctx iris.Context) {
 	ctx.View("article.html")
 }
 
-func index(ctx iris.Context) {
-	ctx.JSON(iris.Map{"message": "Hello World worldie"})
-}
