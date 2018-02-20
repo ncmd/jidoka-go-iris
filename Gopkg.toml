@@ -35,5 +35,5 @@
 
 [metadata.heroku]
   root-package = "github.com/ncmd/jido-go-iris"
-  go-version = "1.9.4"
+  go-version = "1.10"
   install = [ "." ]
