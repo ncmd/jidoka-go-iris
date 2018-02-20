@@ -9,21 +9,17 @@
   },
   "config": {
     "servername":"jidoka-go-iris",
-    "servport":"443"
+    "servport":"8000"
   },
   "scripts": {
-    "start": "server/server",
+    "dev": "npm run docker-run",
+    "deploy": "npm run heroku-deploy",
+    "docker-clean":"docker rm $(docker ps -a -q) -f ; docker rmi $(docker images -q) -f",
     "docker-build": "docker build -t $npm_package_config_servername .",
-    "docker-run":"docker stop $(docker ps -a -q) && docker rm $(docker ps -a -q) && docker run -p $npm_package_config_servport:$npm_package_config_servport  $npm_package_config_servername",
-    "heroku-destroy": "heroku apps:destroy --app $npm_package_config_servername --confirm $npm_package_config_servername",
-    "heroku-docker":"heroku container:push app",
-    "heroku-replace": "heroku apps:destroy --app $npm_package_config_servername --confirm $npm_package_config_servername && git init && heroku apps:create $npm_package_config_servername && git add . && git commit -am \"Init\" && git push heroku master",
+    "docker-run":"docker stop $(docker ps -a -q) ; docker rm $(docker ps -a -q) ; docker run -d -p $npm_package_config_servport:$npm_package_config_servport $npm_package_config_servername && open http://localhost:$npm_package_config_servport",
+    "heroku-replace": "heroku apps:destroy --app $npm_package_config_servername --confirm $npm_package_config_servername && git init && heroku create $npm_package_config_servername && heroku container:push web && heroku open",
     "heroku-init": "heroku apps:create $npm_package_config_servername && git add . && git commit -am \"Init\" && git push heroku master",
-    "heroku-deploy": "npm run build && git add . && git commit -am \"Deploy to Heroku\" && git push heroku master",
-    "client": "npm run start --prefix client",
-    "build": "npm run build --prefix client && go build -o server/server server/*.go",
-    "server": "server/server",
-    "dev": "npm run build && concurrently \"npm run server\" \"npm run client\"",
+    "heroku-deploy": "npm run docker-clean ; npm run docker-build && npm run heroku-replace",
     "dev-latest": "brew update && brew upgrade && sudo npm install -g npm && npm run build && concurrently \"npm run server\" \"npm run client\"",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   }

@@ -2,12 +2,22 @@ package main
 
 import (
 	"github.com/kataras/iris"
+	"os"
+	"log"
 )
 
-// Serve using a host:port form.
-var addr = iris.Addr("0.0.0.0:8000")
+
 
 func main() {
+
+	port := os.Getenv("PORT") // Heroku provides the port to bind to
+	if port == "" {
+		port = "8000"
+	}
+
+	// Serve using a host:port form.
+	var addr = iris.Addr("0.0.0.0:"+port)
+
 	app := iris.New()
 
 	// Register the templates/**.html as django and reload them on each request
@@ -22,6 +32,7 @@ func main() {
 
 	// Now listening on: http://localhost:3000
 	// Application started. Press CTRL+C to shut down.
+	log.Fatal(app.Run(addr))
 	app.Run(addr)
 }
 
