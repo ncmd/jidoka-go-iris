@@ -5,7 +5,7 @@ import (
 )
 
 // Serve using a host:port form.
-var addr = iris.Addr("0.0.0.0:443")
+var addr = iris.Addr("0.0.0.0:8000")
 
 func main() {
 	app := iris.New()
@@ -14,10 +14,10 @@ func main() {
 	// so changes can be reflected, set to false on production.
 	app.RegisterView(iris.Django("./templates", ".html").Reload(true))
 
-	// GET: http://localhost:3000
+	// GET: http://localhost:8000
 	app.Get("/", index)
 
-	// GET: http://localhost:3000/profile/myname/article/42
+	// GET: http://localhost:8000/profile/myname/article/42
 	app.Get("/profile/{name:string}/article/{id:int}", iris.Gzip, article)
 
 	// Now listening on: http://localhost:3000
