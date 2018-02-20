@@ -6,13 +6,11 @@ import (
 	"log"
 )
 
-
-
 func main() {
 
 	port := os.Getenv("PORT") // Heroku provides the port to bind to
 	if port == "" {
-		port = "8000"
+		port = "8000" // Setting a Default port to 8000 to be used locally
 	}
 
 	// Serve using a host:port form.
@@ -52,5 +50,5 @@ func article(ctx iris.Context) {
 }
 
 func index(ctx iris.Context) {
-	ctx.JSON(iris.Map{"message": "Hello World"})
+	ctx.JSON(iris.Map{"message": "Hello World worldie"})
 }

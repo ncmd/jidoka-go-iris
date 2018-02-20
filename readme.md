@@ -9,18 +9,24 @@
 3. Manually configure custom Environment Variables
     * <project_dir>/package.json
     * "config" - "servername":"<custom_server_name>"
-4. Build and Deploy App to Heroku
+4. Login to Heroku
+```bash
+$ heroku container:login
+```
+5. Build and Deploy App to Heroku
 * 🔥⚠️ WARNING ⚠️🔥 - This script is set to remove all existing docker containers & images
 ```bash
 $ npm run deploy
 ```
-5. Run Locally
+6. Run Locally
 * 🔥⚠️ WARNING ⚠️🔥 - This script is set to remove all existing docker containers & images
 ```bash
 $ npm run dev
 ```
 
 ## Details
+Size: ~33.0MB
+
 All Deployments Scripts are in 'package.json'
 
 Gopkg.toml & Gopkg.lock - created by 'dep' (package manager)
