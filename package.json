@@ -13,7 +13,7 @@
   },
   "scripts": {
     "dev": "npm run docker-run",
-    "deploy": "npm run heroku-deploy",
+    "deploy": "npm run heroku-deploy && git add . && git commit -am \"Push to Github\" && git push ",
     "docker-clean":"docker rm $(docker ps -a -q) -f ; docker rmi $(docker images -q) -f",
     "docker-build": "docker build -t $npm_package_config_servername .",
     "docker-run":"docker stop $(docker ps -a -q) ; docker rm $(docker ps -a -q) ; docker run -d -p $npm_package_config_servport:$npm_package_config_servport $npm_package_config_servername && open http://localhost:$npm_package_config_servport",

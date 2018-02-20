@@ -1,22 +1,22 @@
-# A basic web app built in Iris web framework for Go
-
-![overview screen](readme_screen.png)
+# A Dockerized web app built in Iris web framework for Go
 
 ## Getting started
 
-1. Install Go (Golang)
-    * Using [Brew](https://brew.sh/).
-    * Or by navigating to https://golang.org/dl.
-2. Download & Install [Iris](https://iris-go.com) using go get: `go get -u github.com/kataras/iris`
-3. Clone the repository.
-4. Run the web app: `go run app.go`
-
+1. Install Node.js
+    * Using [Brew](https://brew.sh/)
+2. Install Docker
+    * https://www.docker.com/get-docker
+3. Manually configure custom Environment Variables
+    * <project_dir>/package.json
+    * "config" - "servername":"<custom_server_name>"
+4. Build and Deploy App to Heroku
 ```bash
-$ brew install go
-$ go get -u github.com/kataras/iris
-$ cd $GOPATH/src/
-$ git clone https://github.com/iris-contrib/go_iris_app.git
-$ cd ./go_iris_app
-$ go run app.go
+$ npm run deploy
+```
+5. Run Locally
+```bash
+$ npm run deploy
 ```
 
+## Details
+All Scripts are in package.json
