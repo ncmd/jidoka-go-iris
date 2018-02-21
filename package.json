@@ -20,6 +20,7 @@
     "heroku-replace": "heroku apps:destroy --app $npm_package_config_servername --confirm $npm_package_config_servername && git init && heroku create $npm_package_config_servername && heroku container:push web && heroku open && heroku logs",
     "docker-build": "dep ensure -update && docker build -t $npm_package_config_servername .",
     "docker-clean":"docker rm $(docker ps -a -q) -f ; docker rmi $(docker images -q) -f",
+    "build-client": "npm run build --prefix client",
     "dev-latest": "brew update && brew upgrade && brew dep && sudo npm install -g npm"
   }
 }

@@ -8,6 +8,29 @@ import (
 	"log"
 )
 
+func newApp() *iris.Application {
+	app := iris.New()
+	app.RegisterView(iris.HTML("./client/build", ".html").Binary(Asset, AssetNames))
+
+	app.Get("/", func(ctx iris.Context) {
+		ctx.View("index.html")
+	})
+
+	assetHandler := app.StaticEmbeddedHandler("./client/build", Asset, AssetNames)
+	// as an alternative of SPA you can take a look at the /routing/dynamic-path/root-wildcard
+	// example too
+	// or
+	// app.StaticEmbedded if you don't want to redirect on index.html and simple serve your SPA app (recommended).
+
+	// public/index.html is a dynamic view, it's handlded by root,
+	// and we don't want to be visible as a raw data, so we will
+	// the return value of `app.SPA` to modify the `IndexNames` by;
+	app.SPA(assetHandler).AddIndexName("index.html")
+
+	return app
+}
+
+
 func main() {
 
 	// Heroku provides the port to bind to
@@ -16,7 +39,9 @@ func main() {
 		port = "8000" // Setting a Default port to 8000 to be used locally
 	}
 
-	app := iris.New()
+	//app := iris.New()
+
+	app := newApp()
 
 	listenerCfg := tcplisten.Config{
 		ReusePort:   true,
@@ -30,11 +55,6 @@ func main() {
 		app.Logger().Fatal(err)
 	}
 
-	// Watch for template changes and reload when edited
-	pugEngine := iris.Pug("./templates", ".jade")
-	pugEngine.Reload(true) // <--- set to true to re-build the templates on each request.
-	app.RegisterView(pugEngine)
-
 	// Creating MVC Controller
 	mvc.New(app).Handle(new(APIController))
 
@@ -42,6 +62,7 @@ func main() {
 	// so changes can be reflected, set to false on production.
 	app.RegisterView(iris.Django("./templates", ".html").Reload(true))
 
+	app.StaticEmbedded("/","./client/build", Asset, AssetNames)
 
 	// GET: http://localhost:8000/profile/myname/article/42
 	app.Get("/profile/{name:string}/article/{id:int}", iris.Gzip, article)
@@ -65,15 +86,6 @@ func main() {
 
 // Creating MVC Controller Type
 type APIController struct {}
-
-func emptyHandler(ctx iris.Context) {
-	ctx.Writef("Hello from subdomain: %s , you're in path:  %s", ctx.Subdomain(), ctx.Path())
-}
-
-// GET: /
-func (c *APIController) Get() string {
-	return "Welcome! Interact with Jidoka API using /api"
-}
 
 // GET: /api
 func (c *APIController) GetApi() string {
@@ -107,7 +119,7 @@ func article(ctx iris.Context) {
 
 // Error Handling for Internal Server Error
 func internalServerError(ctx iris.Context) {
-	ctx.WriteString("Oops something went wrong, try again")
+	ctx.WriteString("Oops something went wrong with the server, Come back later...")
 }
 func notFound(ctx iris.Context) {
 	// when 404 then render the template $views_dir/errors/404.html
