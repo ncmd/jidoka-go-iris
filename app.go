@@ -111,5 +111,5 @@ func internalServerError(ctx iris.Context) {
 }
 func notFound(ctx iris.Context) {
 	// when 404 then render the template $views_dir/errors/404.html
-	ctx.WriteString("Error 404 - Content does not in API")
+	ctx.WriteString("Error 404 - URI Path does not in API")
 }
