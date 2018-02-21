@@ -38,8 +38,6 @@ func main() {
 		port = "8000" // Setting a Default port to 8000 to be used locally
 	}
 
-	//app := iris.New()
-
 	app := newApp()
 
 	listenerCfg := tcplisten.Config{

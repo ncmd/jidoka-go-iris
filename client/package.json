@@ -1,13 +1,7 @@
 {
   "name": "client",
-  "homepage" : "jidoka-go-iris",
-  "version": "0.2.0",
+  "version": "0.1.0",
   "private": true,
-  "proxy": {
-    "/api/*": {
-      "target": "http://localhost:8000"
-    }
-  },
   "dependencies": {
     "react": "latest",
     "react-dom": "latest",
