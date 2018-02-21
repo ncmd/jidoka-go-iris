@@ -54,6 +54,7 @@ $ npm run deploy
 
 ## Details
     * Size: ~70.0MB
+    * Fully loads in ~1.5 Seconds
     * Dockerfile - File required for building docker image
     * package.json - Deployments scripts
     * Gopkg.toml & Gopkg.lock - created by 'dep' (package manager)
@@ -64,8 +65,10 @@ $ npm run deploy
     * API Heroku Demo: <servername>.herokuapp.com/api/
 
 ## Developer Notes
+    * Again, the whole 'client' directory was genereated by $ create-react-app client
     * Always make sure the $GOPATH/bin is added to PATH on local machine (Otherwise will have problems with generating bindata.go)
     * Always confirm Docker is RUNNING
+    * In the Dockerignore file ALWAYS have node_modules folder included
     * There should ALWAYS be a bindata.go file before building docker image
     * Rename a go build executable (Optional):
     -- $ go build -o apple *.go
