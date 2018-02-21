@@ -66,18 +66,21 @@ $ npm run deploy
     * API Heroku Demo: <servername>.herokuapp.com/api/
 
 ## Developer Notes
-    * Again, the whole 'client' directory was genereated by (included when installing react):
+    * Again, the whole 'client' directory was genereated by (included when installing create-react-app from npm):
+    -- $ npm install -g create-react-app
     -- $ create-react-app client
     * Always make sure the $GOPATH/bin is added to PATH on local machine (Otherwise will have problems with generating bindata.go)
+    -- $ export PATH=$PATH:/Users/<username>/go/bin
     * Always confirm Docker is RUNNING
-    * In the Dockerignore file ALWAYS have node_modules folder included
+    * In the .dockerignore file ALWAYS have node_modules folder included (All regenerated when client is built)
     * There should ALWAYS be a bindata.go file before building docker image
     * Rename a go build executable (Optional):
     -- $ go build -o apple *.go
-    * If you do rename, be sure to update the 'Procfile' and 'Dockerfile'
+    * If you do rename the app name, be sure to update the 'Procfile' and 'Dockerfile'
     * When managing dependencies use 'dep' - https://golang.github.io/dep/docs/introduction.html
     -- $ dep ensure -add github.com/foo/bar
     -- $ dep ensure -update github.com/foo/bar
-    * When updating React Client, always regenerate bindata.go file (Already done in package.json script)
+    * When making changes to React App Client, always regenerate bindata.go file (Already done in package.json script)
+    -- $ go-bindata ./client/build/...
 
 
