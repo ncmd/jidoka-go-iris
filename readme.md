@@ -1,4 +1,4 @@
-# A Dockerized Golang API App built with Iris web framework
+# Fullstack - Dockerized Golang + Iris + API + Create-React-App + Heroku
 
 ## What is jidoka-go-iris?
     * 🐳 Dockerized Golang + Iris + Create-React-App that is deployable to Heroku
