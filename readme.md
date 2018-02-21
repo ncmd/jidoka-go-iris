@@ -21,12 +21,16 @@ $ brew update && brew upgrade && brew install node
 ```bash
 $ brew install dep
 ```
-3. Install Docker 🐳
+4. Install go-bindata
+```bash
+$ go get -u github.com/jteeuwen/go-bindata/...
+```
+5. Install Docker 🐳
     * https://www.docker.com/get-docker
-4. Manually configure "servername" Environment Variable in 'package.json' file
+6. Manually configure "servername" Environment Variable in 'package.json' file
     * <project_dir>/package.json
     * "config" - "servername":"<custom_server_name>"
-5. Login to Heroku
+7. Login to Heroku
 ```bash
 $ heroku container:login
 ```

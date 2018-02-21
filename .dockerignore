@@ -1,7 +1,8 @@
-client/etc
-client/node_modules
-client/public
+client/etc*
+client/node_modules*
+client/public*
 client/package.json
 client/README.md
 client/yarn.lock
 client/.gitignore
+client/src*
