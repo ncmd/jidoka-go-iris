@@ -6,8 +6,9 @@
     * Premade Iris RESTAPI
     * Uses 'dep' - Go Package manager
     * Uses Node.js for easy deployment scripts ❤️
+    * Uses go-bindata to convert create-react-app build to readable go source
     * Deployable to Heroku (Supports Free Teir)
-    * Uses Multi-Stage Builds to create a 33MB Alpine Linux Image!
+    * Uses Multi-Stage Builds to create a ~70MB Alpine Linux Image!
 
 ## Getting Started
 
@@ -22,6 +23,7 @@ $ brew update && brew upgrade && brew install node
 $ brew install dep
 ```
 4. Install go-bindata
+Note to add $GOPATH/bin to your 'env'
 ```bash
 $ go get -u github.com/jteeuwen/go-bindata/...
 ```
@@ -34,12 +36,12 @@ $ go get -u github.com/jteeuwen/go-bindata/...
 ```bash
 $ heroku container:login
 ```
-6. Run Locally
+8. Run Locally
 * 🔥⚠️ WARNING ⚠️🔥 - This script is set to remove all existing docker containers & images
 ```bash
 $ npm run dev
 ```
-7. Build/Rebuild and Deploy/Redeploy App to Heroku
+9. Build/Rebuild and Deploy/Redeploy App to Heroku
 * 🔥⚠️ WARNING ⚠️🔥 - This script is set to remove all existing docker containers & images
 ```bash
 $ npm run deploy
