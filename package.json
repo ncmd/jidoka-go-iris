@@ -1,7 +1,7 @@
 {
   "name": "jidoka-go-iris",
   "homepage": "jidoka-go-iris.herokuapp.com",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "private": false,
   "engines": {
     "node": "latest",
@@ -14,7 +14,7 @@
   "scripts": {
     "dev": "npm run docker-build && npm run docker-run",
     "commit": "git add . && git commit -m \"Commit\"",
-    "deploy": "npm run heroku-deploy && git add . && git commit -am \"Deployed Build\" && git push ",
+    "deploy": "npm run heroku-deploy && git rm -r --cached .idea ; git add . && git commit -am \"Deployed Build\" && git push ",
     "docker-run":"docker stop $(docker ps -a -q) ; docker rm $(docker ps -a -q) ; docker run -p $npm_package_config_servport:$npm_package_config_servport $npm_package_config_servername && open http://localhost:$npm_package_config_servport",
     "heroku-deploy": "npm run docker-clean ; npm run docker-build && npm run heroku-replace",
     "heroku-replace": "heroku apps:destroy --app $npm_package_config_servername --confirm $npm_package_config_servername && git init && heroku create $npm_package_config_servername && heroku container:push web && heroku open && heroku logs",
