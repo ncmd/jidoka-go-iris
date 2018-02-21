@@ -1,4 +1,4 @@
-# Fullstack - Dockerized Golang + Iris + API + Create-React-App + Heroku
+# Fullstack: Dockerized Golang + Iris + API + Create-React-App + Heroku
 
 ## What is jidoka-go-iris?
     * 🐳 Dockerized Golang + Iris + Create-React-App that is deployable to Heroku
@@ -22,8 +22,7 @@ $ brew update && brew upgrade && brew install node
 ```bash
 $ brew install dep
 ```
-3. Install go-bindata
-Note to add $GOPATH/bin to your 'env' PATH
+3. Install go-bindata. Note to add $GOPATH/bin to your 'env' PATH
 ```bash
 $ export PATH=$PATH:/Users/<username>/go/bin
 $ go get -u github.com/jteeuwen/go-bindata/...
@@ -32,7 +31,7 @@ $ go get -u github.com/jteeuwen/go-bindata/...
     * https://www.docker.com/get-docker
     * Run Docker, confirm it is running
 
-5. Manually configure "servername" & "config" variables in 'package.json' file
+5. (For Heroku Deployment) Manually configure "servername" & "config" variables in 'package.json' file; Default port is 8000
     * <project_dir>/package.json
     * "config" - "servername":"<custom_server_name>"
 
@@ -41,7 +40,7 @@ $ go get -u github.com/jteeuwen/go-bindata/...
 $ heroku container:login
 ```
 
-7. Run Locally
+7. Run Locally (Without Heroku) Listens on port 8000
 * 🔥⚠️ WARNING ⚠️🔥 - This script is set to remove all existing docker containers & images
 ```bash
 $ npm run dev
