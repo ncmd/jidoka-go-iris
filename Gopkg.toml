@@ -37,3 +37,6 @@
   root-package = "github.com/ncmd/jido-go-iris"
   go-version = "1.10"
   install = [ "." ]
+[[constraint]]
+  branch = "master"
+  name = "github.com/ncmd/jidoka-go-iris"

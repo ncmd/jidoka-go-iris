@@ -1,24 +1,23 @@
 package datasource
 
-// Houses Imaginary Data
+// Data Source/Store Layer
 import "github.com/ncmd/jidoka-go-iris/datamodels"
-
 
 type Runbook struct {
 	ID     		int64  	`json:"id"`
-	Type   		string	`json:"type"`
-	Creator 	string 	`json:"creator"`
+	Creator   	string	`json:"creator"`
+	Title 		string 	`json:"title"`
 }
 
 var Runbooks = map[int64]datamodels.Runbook{
 	1: {
 		ID:			1,
-		Type:		"runbook",
-		Creator:	"Charles Chong"
+		Creator:	"Charles Chong",
+		Title:		"How to Program",
 	},
 	2: {
 		ID:			2,
-		Type:		"runbook",
-		Creator:	"Charles Chong"
+		Creator:	"runbook",
+		Title:		"How to Write",
 	},
 }

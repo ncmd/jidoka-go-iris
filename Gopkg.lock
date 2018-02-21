@@ -91,8 +91,6 @@
     "core/handlerconv",
     "core/host",
     "core/maintenance",
-    "core/maintenance/client",
-    "core/maintenance/encoding",
     "core/maintenance/version",
     "core/memstore",
     "core/netutil",
@@ -111,8 +109,8 @@
     "sessions",
     "view"
   ]
-  revision = "2546d8bca00d42e7dbcc63d8dbbcfc0735808600"
-  version = "v10.2.0"
+  revision = "cfd33bc7cdc077c11e7da911469321f2e54e3847"
+  version = "v10.2.1"
 
 [[projects]]
   branch = "master"
@@ -180,6 +178,12 @@
 
 [[projects]]
   branch = "master"
+  name = "github.com/ncmd/jidoka-go-iris"
+  packages = ["datamodels"]
+  revision = "ef79d1dd22205890e04b17842d0ae5c748d6c583"
+
+[[projects]]
+  branch = "master"
   name = "github.com/ryanuber/columnize"
   packages = ["."]
   revision = "abc90934186a77966e2beeac62ed966aac0561d5"
@@ -241,6 +245,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "abe9858653bcb3ccaa545b34d4f1f6461242b4ad4b88863363f0ba5dd2eb248a"
+  inputs-digest = "d59445b7d4893dc36f174d5e514dce1105226e50e9ab4bc5b26df64a4181b7d2"
   solver-name = "gps-cdcl"
   solver-version = 1
