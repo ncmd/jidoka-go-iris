@@ -31,9 +31,10 @@ $ go get -u github.com/jteeuwen/go-bindata/...
     * https://www.docker.com/get-docker
     * Run Docker, confirm it is running
 
-5. (For Heroku Deployment) Manually configure "servername" & "config" variables in 'package.json' file; Default port is 8000
+5. (For Heroku Deployment) Manually configure "servername","config", & "root-package" variables in 'package.json' & Gopkg.toml files
     * <project_dir>/package.json
     * "config" - "servername":"<custom_server_name>"
+    * root-package = "github.com/<github_username>/<this_github_project>"
 
 6. Login to Heroku
 ```bash
@@ -65,7 +66,8 @@ $ npm run deploy
     * API Heroku Demo: <servername>.herokuapp.com/api/
 
 ## Developer Notes
-    * Again, the whole 'client' directory was genereated by $ create-react-app client
+    * Again, the whole 'client' directory was genereated by (included when installing react):
+    -- $ create-react-app client
     * Always make sure the $GOPATH/bin is added to PATH on local machine (Otherwise will have problems with generating bindata.go)
     * Always confirm Docker is RUNNING
     * In the Dockerignore file ALWAYS have node_modules folder included
