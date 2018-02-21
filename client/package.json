@@ -1,5 +1,6 @@
 {
   "name": "client",
+  "homepage" : "jidoka-go-iris",
   "version": "0.2.0",
   "private": true,
   "proxy": {

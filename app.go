@@ -22,14 +22,13 @@ func newApp() *iris.Application {
 	// or
 	// app.StaticEmbedded if you don't want to redirect on index.html and simple serve your SPA app (recommended).
 
-	// public/index.html is a dynamic view, it's handlded by root,
+	// public/index.html is a dynamic view, it's handled by root,
 	// and we don't want to be visible as a raw data, so we will
 	// the return value of `app.SPA` to modify the `IndexNames` by;
 	app.SPA(assetHandler).AddIndexName("index.html")
 
 	return app
 }
-
 
 func main() {
 
@@ -58,14 +57,11 @@ func main() {
 	// Creating MVC Controller
 	mvc.New(app).Handle(new(APIController))
 
-	// Register the templates/**.html as django and reload them on each request
-	// so changes can be reflected, set to false on production.
-	app.RegisterView(iris.Django("./templates", ".html").Reload(true))
+	//// Register the templates/**.html as django and reload them on each request
+	//// so changes can be reflected, set to false on production.
+	//app.RegisterView(iris.Django("./templates", ".html").Reload(true))
 
 	app.StaticEmbedded("/","./client/build", Asset, AssetNames)
-
-	// GET: http://localhost:8000/profile/myname/article/42
-	app.Get("/profile/{name:string}/article/{id:int}", iris.Gzip, article)
 
 	// Shutdown Callback
 	app.ConfigureHost(func(h *iris.Supervisor) {
@@ -100,21 +96,6 @@ func (c *APIController) GetApiBy(name string) string {
 // GET: /api/hello
 func (c *APIController) GetApiHello() interface{} {
 	return map[string]string{"message": "Hello Iris!"}
-}
-
-func article(ctx iris.Context) {
-	// retrieve the dynamic path parameters.
-	var (
-		name         = ctx.Params().Get("name")
-		articleID, _ = ctx.Params().GetInt("id")
-	)
-
-	// set the template's binded values.
-	ctx.ViewData("Name", name)
-	ctx.ViewData("ArticleID", articleID)
-
-	// finally, render the template.
-	ctx.View("article.html")
 }
 
 // Error Handling for Internal Server Error
