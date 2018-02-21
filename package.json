@@ -1,8 +1,8 @@
 {
   "name": "jidoka-go-iris",
   "homepage": "jidoka-go-iris.herokuapp.com",
-  "version": "0.3.0",
-  "private": true,
+  "version": "0.4.0",
+  "private": false,
   "engines": {
     "node": "latest",
     "npm": "latest"
