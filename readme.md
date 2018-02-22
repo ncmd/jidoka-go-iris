@@ -9,7 +9,7 @@
     * Uses go-bindata to convert create-react-app build to readable go source
     * Deployable to Heroku (Supports Free Teir) - heroku.com
     * Uses Multi-Stage Builds to create a ~70MB Alpine Linux Image! (Trying to get it Smaller)
-    * Progressive Web App Rating (On Heroku) is 82 PWA, 94 Performance, 100 Accessibility, 88 Best Practices
+    * Progressive Web App Rating (On Heroku) is 100 PWA, 94 Performance, 100 Accessibility, 88 Best Practices
 
 ## Getting Started
 
@@ -85,7 +85,7 @@ $ npm run deploy
     * API Heroku Demo: <servername>.herokuapp.com/api/
     * Changes made to Create-React-App:
     -- Added the "Proxy" to direct api/* to server in client/package.json
-    -- Added "512x512 192x192" sizes to manife
+    -- Added "512x512 192x192" sizes to client/public/manifest.json for 100 PWA Score
 
 ## Developer Notes & Tips
     * Use the 'docker-clean' Node.js Script to stop and delete all old docker images
