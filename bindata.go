@@ -92,7 +92,7 @@ func clientBuildAssetManifestJson() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "client/build/asset-manifest.json", size: 257, mode: os.FileMode(420), modTime: time.Unix(1519281847, 0)}
+	info := bindataFileInfo{name: "client/build/asset-manifest.json", size: 257, mode: os.FileMode(420), modTime: time.Unix(1519281950, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }
@@ -112,7 +112,7 @@ func clientBuildFaviconIco() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "client/build/favicon.ico", size: 3870, mode: os.FileMode(420), modTime: time.Unix(1519281842, 0)}
+	info := bindataFileInfo{name: "client/build/favicon.ico", size: 3870, mode: os.FileMode(420), modTime: time.Unix(1519281944, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }
@@ -132,12 +132,12 @@ func clientBuildIndexHtml() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "client/build/index.html", size: 548, mode: os.FileMode(420), modTime: time.Unix(1519281847, 0)}
+	info := bindataFileInfo{name: "client/build/index.html", size: 548, mode: os.FileMode(420), modTime: time.Unix(1519281950, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }
 
-var _clientBuildManifestJson = []byte("\x1f\x8b\x08\x00\x00\x00\x00\x00\x00\xff\x4c\x8e\xcd\x4e\xc3\x30\x0c\x80\xef\x79\x0a\x2b\x5c\xa1\x63\x5d\xd5\xc3\x6e\x88\x37\x80\x23\x42\x95\x49\xbd\x35\x22\x7f\x4a\x3c\x94\x31\xed\xdd\x91\x53\xfe\x7c\xc8\x21\xdf\x67\xeb\xbb\x28\x00\x5d\x96\x98\x79\x0a\xe8\x49\xef\x41\x3f\x11\x1a\x86\x87\x94\xf4\xad\xc0\x9f\xef\xc7\x4c\xc8\x04\xbf\x14\x9e\xd1\x27\x47\xab\x64\x4d\x0c\x45\xef\xe1\x45\x01\x00\x5c\xda\x2b\x87\xb3\x91\xd5\x03\x7e\x88\xd0\x59\x13\x9b\xbe\x32\xfb\x49\xb2\xa2\xc7\xa1\x8e\x03\xec\xfa\xba\xeb\xa1\x1f\x6a\x3f\xc0\x76\xac\xdb\xf1\xcf\xe4\x73\x6a\x05\xd6\xe3\x91\x36\xf5\x4e\x6e\xe9\x06\xaf\x0a\xe0\xb5\x05\x14\xc6\xcc\xd3\x29\x3b\x11\xbb\x8d\x0d\x33\xd5\x6e\x61\xef\xd6\xbe\xd9\x96\xe4\xf0\x2c\xb0\x30\x86\x19\x5d\x0c\xdf\xe9\xbc\x90\xa7\xc9\x44\x17\xb3\xe0\x9b\xfb\x36\x2b\x7b\x43\xf3\x7e\xcc\xf1\x14\xe6\x7f\xc2\xa1\x8d\x56\x57\xf5\x15\x00\x00\xff\xff\xe1\x6c\x74\x33\x3d\x01\x00\x00")
+var _clientBuildManifestJson = []byte("\x1f\x8b\x08\x00\x00\x00\x00\x00\x00\xff\x4c\x8f\xcb\x4e\xc3\x30\x10\x45\xf7\xfe\x8a\x91\xd9\x42\x8a\xdd\x34\x52\xbb\x43\xfc\x01\x2c\x11\x8a\x06\x67\xda\x58\xf8\x25\xdb\x45\x2e\x55\xfe\x1d\xd9\xe1\x35\x0b\x2f\x7c\xce\x1d\xdd\xb9\x32\x00\x9e\x66\x1f\xf3\xe8\xd0\x12\x3f\x00\x7f\x22\x54\x19\x1e\x42\xe0\xb7\x15\xfe\x7c\x3f\x46\xc2\x4c\xf0\x4b\xe1\x19\x6d\x30\xb4\x4a\x5a\x79\x97\xf8\x01\x5e\x18\x00\xc0\xb5\xbd\x75\x71\x54\x35\x7a\xc4\x8f\x2a\x74\x5a\xf9\xa6\xaf\x4c\x7f\x52\x8d\xf0\x9d\x90\x65\x27\x24\x88\xbd\x2c\x62\x2f\x61\xe8\xcb\xd0\xc3\x56\x96\xad\x04\xd9\x17\xd9\x83\x18\x8a\x18\xfe\x92\xf9\x12\x5a\x23\x6d\xf1\x44\x9b\x72\x57\x77\xf3\x06\x17\x06\xf0\xda\x0a\xa5\x8c\x31\x8f\xe7\x68\xaa\xd8\x6d\xb4\x9b\xa8\x74\x73\xb6\x66\xed\x3b\xe9\x14\x0c\x5e\x2a\x4c\x19\xdd\x84\xc6\xbb\xef\x53\xf2\x4c\x96\x46\xe5\x8d\x8f\x15\xdf\xdc\xb7\x59\xd9\x1b\xaa\xf7\x53\xf4\x67\x37\xfd\x13\x8e\x6d\x38\x5b\xd8\x57\x00\x00\x00\xff\xff\x90\x99\x3d\xf6\x4d\x01\x00\x00")
 
 func clientBuildManifestJsonBytes() ([]byte, error) {
 	return bindataRead(
@@ -152,7 +152,7 @@ func clientBuildManifestJson() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "client/build/manifest.json", size: 317, mode: os.FileMode(420), modTime: time.Unix(1519281842, 0)}
+	info := bindataFileInfo{name: "client/build/manifest.json", size: 333, mode: os.FileMode(420), modTime: time.Unix(1519281944, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }
@@ -172,7 +172,7 @@ func clientBuildServiceWorkerJs() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "client/build/service-worker.js", size: 3235, mode: os.FileMode(420), modTime: time.Unix(1519281847, 0)}
+	info := bindataFileInfo{name: "client/build/service-worker.js", size: 3235, mode: os.FileMode(420), modTime: time.Unix(1519281950, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }
@@ -192,7 +192,7 @@ func clientBuildStaticCssMainC17080f1Css() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "client/build/static/css/main.c17080f1.css", size: 650, mode: os.FileMode(420), modTime: time.Unix(1519281847, 0)}
+	info := bindataFileInfo{name: "client/build/static/css/main.c17080f1.css", size: 650, mode: os.FileMode(420), modTime: time.Unix(1519281950, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }
@@ -212,7 +212,7 @@ func clientBuildStaticCssMainC17080f1CssMap() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "client/build/static/css/main.c17080f1.css.map", size: 1288, mode: os.FileMode(420), modTime: time.Unix(1519281847, 0)}
+	info := bindataFileInfo{name: "client/build/static/css/main.c17080f1.css.map", size: 1288, mode: os.FileMode(420), modTime: time.Unix(1519281950, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }
@@ -232,7 +232,7 @@ func clientBuildStaticJsMain01153ad9Js() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "client/build/static/js/main.01153ad9.js", size: 115199, mode: os.FileMode(420), modTime: time.Unix(1519281847, 0)}
+	info := bindataFileInfo{name: "client/build/static/js/main.01153ad9.js", size: 115199, mode: os.FileMode(420), modTime: time.Unix(1519281950, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }
@@ -252,7 +252,7 @@ func clientBuildStaticJsMain01153ad9JsMap() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "client/build/static/js/main.01153ad9.js.map", size: 474100, mode: os.FileMode(420), modTime: time.Unix(1519281847, 0)}
+	info := bindataFileInfo{name: "client/build/static/js/main.01153ad9.js.map", size: 474100, mode: os.FileMode(420), modTime: time.Unix(1519281950, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }
@@ -272,7 +272,7 @@ func clientBuildStaticMediaLogo5d5d9eefSvg() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "client/build/static/media/logo.5d5d9eef.svg", size: 2671, mode: os.FileMode(420), modTime: time.Unix(1519281847, 0)}
+	info := bindataFileInfo{name: "client/build/static/media/logo.5d5d9eef.svg", size: 2671, mode: os.FileMode(420), modTime: time.Unix(1519281950, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }
