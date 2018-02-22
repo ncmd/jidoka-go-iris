@@ -90,7 +90,7 @@ $ npm run deploy
     * Pull Docker Image form Docker Hub
 ```bash
 $ docker pull jidokaus/jidoka-go-iris:latest
-$ npm docker run
+$ npm run docker-run-image
 ```
 
 ## Details
@@ -133,6 +133,7 @@ $ npm docker run
     * commit - Commit code, does not Push to Prod/Github
     * deploy - Deploys to Heroku and Push to Github
     * docker-test - Test Docker Build and Run
+    * docker-run-image - Runs downloaded Dockerhub Image
     * docker-run - Runs docker image
     * heroku-deploy - Build + Destroys existing Heroku Server + Recreate Server
     * heroku-replace - Destroys existing Heroku Server + Recreate Server
