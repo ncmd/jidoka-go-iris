@@ -81,7 +81,8 @@ $ npm run deploy
     * API Dev Demo: localhost:8000/api/
     * API Heroku Demo: <servername>.herokuapp.com/api/
 
-## Developer Notes
+## Developer Notes & Tips
+    * Use the 'docker-clean' Node.js Script to stop and delete all old docker images
     * Again, the whole 'client' directory was genereated by (included when installing create-react-app from npm):
     -- $ npm install -g create-react-app
     -- $ create-react-app client

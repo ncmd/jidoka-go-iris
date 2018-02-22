@@ -2,3 +2,5 @@ client/node_modules/**/*
 client/node_modules
 .idea/**/*
 .idea
+node_modules
+./node_modules
