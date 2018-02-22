@@ -12,7 +12,3 @@
   root-package = "github.com/ncmd/jido-go-iris"
   go-version = "1.10"
   install = [ "." ]
-
-[[constraint]]
-  name = "github.com/pkg/errors"
-  version = "0.8.0"

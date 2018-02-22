@@ -2,19 +2,15 @@
 
 ## What is jidoka-go-iris?
     * 🐳 Dockerized Golang + Iris + Create-React-App that is deployable to Heroku
-    * Uses Iris Web Framework
+    * Uses Iris Web Framework - https://github.com/kataras/iris
     * Premade Iris RESTAPI
     * Uses 'dep' - Go Package manager
     * Uses Node.js for easy deployment scripts ❤️
     * Uses go-bindata to convert create-react-app build to readable go source
-    * Deployable to Heroku (Supports Free Teir)
+    * Deployable to Heroku (Supports Free Teir) - heroku.com
     * Uses Multi-Stage Builds to create a ~70MB Alpine Linux Image! (Trying to get it Smaller)
 
 ## Getting Started
-0. Download this Repo and put it in the $GOPATH
-    * $ export GOPATH=$HOME/go
-    * Location: /Users/<username>/go/src/<this_project>
-    * ie: /Users/charleschong/go/src/jidoka-go-iris
 
 1. Install Node.js
     * Node.js Installer - https://nodejs.org/en/download/
@@ -23,25 +19,41 @@
 $ brew update && brew upgrade && brew install node
 ```
 
-2. Install Dep
+2. Manually configure "servername","config", & "root-package" variables in 'package.json' & Gopkg.toml files
+    * <project_dir>/package.json
+    * "config" - "servername":"<custom_server_name>" ; ie. jidoka-go-iris
+    * root-package = "github.com/<github_username>/<this_github_project>" ; ie. github.com/ncmd/jidoka-go-iris
+
+3. Setup your github account if you want to deploy it to Github
+    * Via Github App; + > Add > Local Path = /Users/<username>/go/src/<project_name>
+    -- Commit to Master > Sync
+    * Via CLI
+    -- https://help.github.com/articles/adding-an-existing-project-to-github-using-the-command-line/
+
+4. Run Dev Workspace Setup Script (Only for Brew OSX)
+    * Brew Update & Upgrade
+    * Installs go
+    * Installs dep
+    * Installs git
+    * Updates npm
+    * Setups up env PATH
 ```bash
-$ brew install dep
+$ npm run dev-latest
 ```
 
-3. Install go-bindata. Note to add $GOPATH/bin to your 'env' PATH
+5. Initialize Github Project (Only if you're signed-in to Github via Github App/Git)
+```bash
+$ npm run dev-github
+```
+
+6. Install go-bindata. Note to add $GOPATH/bin to your 'env' PATH
 ```bash
 $ export PATH=$PATH:/Users/<username>/go/bin
 $ go get -u github.com/jteeuwen/go-bindata/...
 ```
-
-4. Install Docker 🐳 Stable (Edge not tested)
+7. Install Docker 🐳 Stable (Edge not tested)
     * https://www.docker.com/get-docker
     * Run Docker, confirm it is running
-
-5. (For Heroku Deployment) Manually configure "servername","config", & "root-package" variables in 'package.json' & Gopkg.toml files
-    * <project_dir>/package.json
-    * "config" - "servername":"<custom_server_name>"
-    * root-package = "github.com/<github_username>/<this_github_project>"
 
 6. Login to Heroku
 ```bash
@@ -52,24 +64,16 @@ $ heroku container:login
 ```bash
 $ npm run dev
 ```
-
-8.0 Add this repository to your github account if you want to deploy it
-    * Via Github App; + > Add > Local Path = /Users/<username>/go/src/<project_name>
-    -- Commit to Master > Sync
-    * Via CLI
-    -- https://help.github.com/articles/adding-an-existing-project-to-github-using-the-command-line/
-
-
-8.1 Build/Rebuild and Deploy/Redeploy App to Heroku
+8 Build/Rebuild and Deploy/Redeploy App to Heroku (Requires Steps 1 - 7)
 ```bash
 $ npm run deploy
 ```
 
 ## Details
     * Size: ~70.0MB
-    * Fully loads in ~1.5 Seconds
+    * Fully loads client and server in ~1.5 Seconds | ~400ms
     * Dockerfile - File required for building docker image
-    * package.json - Deployments scripts
+    * package.json - Node.js deployments scripts
     * Gopkg.toml & Gopkg.lock - created by 'dep' (package manager)
     * Procfile - Used to run go apps in heroku
     * app.go - The App
