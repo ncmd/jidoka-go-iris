@@ -11,16 +11,21 @@
     "servername": "jidoka-go-iris",
     "servport": "8000",
     "gitusername": "ncmd",
-    "githubprojectname": "https://github.com/ncmd/jidoka-go-iris.git"
+    "githubprojectname": "https://github.com/ncmd/jidoka-go-iris.git",
+    "dockerhubusername": "jidokaus"
   },
   "scripts": {
     "dev": "concurrently \"npm run start --prefix client\" \"rm -rf ./app ; go build *.go && ./app\"",
     "commit": "git add . && git commit -m \"Commit\"",
     "deploy": "npm run heroku-deploy && git rm -r --cached .idea ; git add . && git commit -am \"Deployed Build\" && git push ",
     "docker-test": "npm run docker-build && npm run docker-run",
+    "docker-run-image": "docker run ",
     "docker-run": "docker stop $(docker ps -a -q) ; docker run -p $npm_package_config_servport:$npm_package_config_servport $npm_package_config_servername && open http://localhost:$npm_package_config_servport",
-    "heroku-deploy": "npm run docker-build && npm run heroku-replace",
+    "heroku-deploy": "npm run docker-build && npm run heroku-replace ; npm run docker-tag ; npm run dockerhub-push",
     "heroku-replace": "heroku apps:destroy --app $npm_package_config_servername --confirm $npm_package_config_servername ; git init && heroku create $npm_package_config_servername && heroku container:push web && heroku open && heroku logs",
+    "dockerhub-login": "docker login",
+    "docker-tag": "docker tag $npm_package_config_servername $npm_package_config_dockerhubusername/$npm_package_config_servername:latest",
+    "dockerhub-push": "docker push $npm_package_config_dockerhubusername/$npm_package_config_servername",
     "docker-build": "export GOPATH=$HOME/go ; npm run build-client && dep ensure -update && rm -rf ./app ; docker build -t $npm_package_config_servername .",
     "docker-clean": "docker stop $(docker ps -a -q) ; docker rm $(docker ps -a -q) -f ; docker rmi $(docker images -q) -f",
     "build-client": "npm run build --prefix client && go-bindata ./client/build/...",

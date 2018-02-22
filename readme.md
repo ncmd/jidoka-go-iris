@@ -9,6 +9,7 @@
     * Uses go-bindata to convert create-react-app build to readable go source
     * Deployable to Heroku (Supports Free Teir) - heroku.com
     * Uses Multi-Stage Builds to create a ~70MB Alpine Linux Image! (Trying to get it Smaller)
+    * Able to deploy Docker Image to Dockerhub
     * Progressive Web App Rating (On Heroku):
     -- 100 Portable Web Application
     -- 94 Performance
@@ -17,6 +18,10 @@
 
 ## Getting Started
 
+* If you want to run this for dev mode follow steps 1, 2, and 10
+* If you want to just run the Docker Image follow step 12
+* If you want to deploy this to git/github, dockerhub, heroku, follow all steps
+
 1. Install Node.js
     * Node.js Installer - https://nodejs.org/en/download/
     * Or using Brew 🍺 for Mac - https://brew.sh
@@ -24,9 +29,9 @@
 $ brew update && brew upgrade && brew install node
 ```
 
-2. Manually configure "servername","config", & "root-package" variables in 'package.json' & Gopkg.toml files
+2. Manually configure "servername","githubusername","githubprojectname","dockerusername","root-package" variables in 'package.json' & Gopkg.toml files
     * <project_dir>/package.json
-    * "config" - "servername":"<custom_server_name>" ; ie. jidoka-go-iris
+    * "servername":"<custom_server_name>" ; ie. jidoka-go-iris
     * root-package = "github.com/<github_username>/<this_github_project>" ; ie. github.com/ncmd/jidoka-go-iris
 
 3. Setup your github account if you want to deploy it to Github
@@ -66,18 +71,30 @@ $ go get -u github.com/jteeuwen/go-bindata/...
 $ heroku container:login
 ```
 
-9. Run Locally (Without Heroku) Listens on port 8000
+9. Login to DockerHub - https://hub.docker.com/
+```bash
+$ docker login --username=yourhubusername
+```
+
+10. Run Locally (Without Heroku) Listens on port 8000
 ```bash
 $ npm run dev
 ```
 
-10. Build/Rebuild and Deploy/Redeploy App to Heroku (Requires Steps 1 - 8)
+11. Build/Rebuild and Deploy/Redeploy App to Heroku (Requires Steps 1 - 8)
 ```bash
 $ npm run deploy
 ```
 
+12. Run just Docker Image
+    * Pull Docker Image form Docker Hub
+```bash
+$ docker pull jidokaus/jidoka-go-iris:latest
+$ npm docker run
+```
+
 ## Details
-    * Size: ~100.0MB
+    * Docker Image Size: ~100.0MB
     * Fully loads client and server in ~1.5 Seconds | ~400ms
     * Dockerfile - File required for building docker image
     * package.json - Node.js deployments scripts
@@ -118,7 +135,10 @@ $ npm run deploy
     * docker-test - Test Docker Build and Run
     * docker-run - Runs docker image
     * heroku-deploy - Build + Destroys existing Heroku Server + Recreate Server
-    * heroku-replace - Destrys existing Heroku Server + Recreate Server
+    * heroku-replace - Destroys existing Heroku Server + Recreate Server
+    * dockerhub-login - Login to Dockerhub
+    * docker-tag - Tags Docker Image with Latest
+    * dockerhub-push - Deploys Docker Image to Dockerhub
     * docker-build - Builds Docker image
     * docker-clean - Stops all Docker Containers + Deletes all Docker Containers + Existing Deletes Docker Images
     * build-client - Runs build script in client directory
