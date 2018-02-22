@@ -9,7 +9,11 @@
     * Uses go-bindata to convert create-react-app build to readable go source
     * Deployable to Heroku (Supports Free Teir) - heroku.com
     * Uses Multi-Stage Builds to create a ~70MB Alpine Linux Image! (Trying to get it Smaller)
-    * Progressive Web App Rating (On Heroku) is 100 PWA, 94 Performance, 100 Accessibility, 88 Best Practices
+    * Progressive Web App Rating (On Heroku):
+    -- 100 Portable Web Application
+    -- 94 Performance
+    -- 100 Accessibility
+    -- 88 Best Practices (Heroku does not support HTTP/2 yet...)
 
 ## Getting Started
 
