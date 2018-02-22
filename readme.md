@@ -51,20 +51,22 @@ $ npm run dev-github
 $ export PATH=$PATH:/Users/<username>/go/bin
 $ go get -u github.com/jteeuwen/go-bindata/...
 ```
+
 7. Install Docker 🐳 Stable (Edge not tested)
     * https://www.docker.com/get-docker
     * Run Docker, confirm it is running
 
-6. Login to Heroku
+8. Login to Heroku
 ```bash
 $ heroku container:login
 ```
 
-7. Run Locally (Without Heroku) Listens on port 8000
+9. Run Locally (Without Heroku) Listens on port 8000
 ```bash
 $ npm run dev
 ```
-8 Build/Rebuild and Deploy/Redeploy App to Heroku (Requires Steps 1 - 7)
+
+10 Build/Rebuild and Deploy/Redeploy App to Heroku (Requires Steps 1 - 7)
 ```bash
 $ npm run deploy
 ```
