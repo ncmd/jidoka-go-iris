@@ -11,6 +11,10 @@
     * Uses Multi-Stage Builds to create a ~70MB Alpine Linux Image! (Trying to get it Smaller)
 
 ## Getting Started
+0. Download this Repo and put it in the $GOPATH
+    * $ export GOPATH=$HOME/go
+    * Location: /Users/<username>/go/src/<this_project>
+    * ie: /Users/charleschong/go/src/jidoka-go-iris
 
 1. Install Node.js
     * Node.js Installer - https://nodejs.org/en/download/
@@ -18,15 +22,18 @@
 ```bash
 $ brew update && brew upgrade && brew install node
 ```
+
 2. Install Dep
 ```bash
 $ brew install dep
 ```
+
 3. Install go-bindata. Note to add $GOPATH/bin to your 'env' PATH
 ```bash
 $ export PATH=$PATH:/Users/<username>/go/bin
 $ go get -u github.com/jteeuwen/go-bindata/...
 ```
+
 4. Install Docker 🐳 Stable (Edge not tested)
     * https://www.docker.com/get-docker
     * Run Docker, confirm it is running
@@ -47,7 +54,14 @@ $ heroku container:login
 $ npm run dev
 ```
 
-8. Build/Rebuild and Deploy/Redeploy App to Heroku
+8.0 Add this repository to your github account if you want to deploy it
+    * Via Github App; + > Add > Local Path = /Users/<username>/go/src/<project_name>
+    -- Commit to Master > Sync
+    * Via CLI
+    -- https://help.github.com/articles/adding-an-existing-project-to-github-using-the-command-line/
+
+
+8.1 Build/Rebuild and Deploy/Redeploy App to Heroku
 * 🔥⚠️ WARNING ⚠️🔥 - This script is set to remove all existing docker containers & images
 ```bash
 $ npm run deploy
@@ -70,6 +84,7 @@ $ npm run deploy
     -- $ npm install -g create-react-app
     -- $ create-react-app client
     * Always make sure the $GOPATH/bin is added to PATH on local machine (Otherwise will have problems with generating bindata.go)
+    -- $ export GOPATH=$HOME/go
     -- $ export PATH=$PATH:/Users/<username>/go/bin
     * Always confirm Docker is RUNNING
     * In the .dockerignore file ALWAYS have node_modules folder included (All regenerated when client is built)

@@ -1,11 +1,16 @@
 {
   "name": "client",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "dependencies": {
     "react": "latest",
     "react-dom": "latest",
     "react-scripts": "latest"
+  },
+  "proxy": {
+    "/api/*": {
+      "target": "http://localhost:8000"
+    }
   },
   "scripts": {
     "start": "react-scripts start",
