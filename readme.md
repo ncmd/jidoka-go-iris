@@ -89,7 +89,6 @@ $ npm run deploy
 12. Run just Docker Image
     * Pull Docker Image form Docker Hub
 ```bash
-$ docker pull jidokaus/jidoka-go-iris:latest
 $ npm run docker-run-image
 ```
 
