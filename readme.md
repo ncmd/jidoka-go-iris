@@ -49,7 +49,6 @@ $ heroku container:login
 ```
 
 7. Run Locally (Without Heroku) Listens on port 8000
-* 🔥⚠️ WARNING ⚠️🔥 - This script is set to remove all existing docker containers & images
 ```bash
 $ npm run dev
 ```
@@ -62,7 +61,6 @@ $ npm run dev
 
 
 8.1 Build/Rebuild and Deploy/Redeploy App to Heroku
-* 🔥⚠️ WARNING ⚠️🔥 - This script is set to remove all existing docker containers & images
 ```bash
 $ npm run deploy
 ```
@@ -98,4 +96,18 @@ $ npm run deploy
     * When making changes to React App Client, always regenerate bindata.go file (Already done in package.json script)
     -- $ go-bindata ./client/build/...
 
+## Scripts
+    * dev - Runs both client and server without compiling/building supports hot changes
+    * commit - Commit code, does not Push to Prod/Github
+    * deploy - Deploys to Heroku and Push to Github
+    * docker-test - Test Docker Build and Run
+    * docker-run - Runs docker image
+    * heroku-deploy - Build + Destroys existing Heroku Server + Recreate Server
+    * heroku-replace - Destrys existing Heroku Server + Recreate Server
+    * docker-build - Builds Docker image
+    * docker-clean - Stops all Docker Containers + Deletes all Docker Containers + Existing Deletes Docker Images
+    * build-client - Runs build script in client directory
+    * dev-latests - Updates brew, dep, and npm to latest versions
+    * dev-env - Configures $GOPATH and $GOPATH/bin path in environment variables + creates github project
+    * dev-github - Creates New Github Project (Must manually set the "githubprojectname" variable)
 
