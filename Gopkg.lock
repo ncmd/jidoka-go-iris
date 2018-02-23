@@ -192,6 +192,12 @@
 
 [[projects]]
   branch = "master"
+  name = "github.com/ncmd/jidoka-go-iris"
+  packages = ["datamodels"]
+  revision = "6ee1158919f754cf366dadb48e378fcc87ea1d36"
+
+[[projects]]
+  branch = "master"
   name = "github.com/ryanuber/columnize"
   packages = ["."]
   revision = "abc90934186a77966e2beeac62ed966aac0561d5"
@@ -264,6 +270,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "cc6d939ac1006879d518fc5acfbd33cd06aa4532060a70f8616ee5b091c6800c"
+  inputs-digest = "d91e1ecf87eaa45f88c00ec91090bdcb388862f1de479b2a5fdc9fcf2ede6e21"
   solver-name = "gps-cdcl"
   solver-version = 1

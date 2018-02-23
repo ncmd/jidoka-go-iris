@@ -17,7 +17,7 @@
   "scripts": {
     "dev": "npm run build-client && concurrently \"npm run start --prefix client\" \"rm -rf ./app ; go build *.go && ./app\"",
     "commit": "git add . && git commit -m \"Commit\"",
-    "deploy": "npm run heroku-deploy && git rm -r --cached .idea ; git add . && git commit -am \"Deployed Build\" && git push ",
+    "deploy": "npm run heroku-deploy && git rm -r --cached .idea ; git rm -r --cached .idea --prefix client ; git add . && git commit -am \"Deployed Build\" && git push ",
     "docker-test": "npm run docker-build && npm run docker-run",
     "docker-run-image": "docker pull jidokaus/jidoka-go-iris:latest && docker run -p $npm_package_config_servport:$npm_package_config_servport $npm_package_config_dockerhubusername/$npm_package_config_servername:latest && open http://localhost:$npm_package_config_servport",
     "docker-run": "docker stop $(docker ps -a -q) ; docker run -p $npm_package_config_servport:$npm_package_config_servport $npm_package_config_servername && open http://localhost:$npm_package_config_servport",
