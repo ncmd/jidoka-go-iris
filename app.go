@@ -1,30 +1,41 @@
 package main
 
 import (
+	"time"
+
+	"github.com/iris-contrib/examples/mvc/login/datasource"
+	"github.com/iris-contrib/examples/mvc/login/repositories"
+	"github.com/iris-contrib/examples/mvc/login/services"
+	"github.com/iris-contrib/examples/mvc/login/web/controllers"
+	"github.com/iris-contrib/examples/mvc/login/web/middleware"
+
 	"github.com/kataras/iris"
 	"github.com/kataras/iris/mvc"
+	"github.com/kataras/iris/sessions"
+
 	"github.com/valyala/tcplisten"
+
 	"os"
 	"log"
 )
 
 func newApp() *iris.Application {
+
 	app := iris.New()
+
+	// You got full debug messages, useful when using MVC and you want to make
+	// sure that your code is aligned with the Iris' MVC Architecture.
+	app.Logger().SetLevel("debug")
+
 	app.RegisterView(iris.HTML("./client/build", ".html").Binary(Asset, AssetNames))
+
 
 	app.Get("/", func(ctx iris.Context) {
 		ctx.View("index.html")
 	})
 
 	assetHandler := app.StaticEmbeddedHandler("./client/build", Asset, AssetNames)
-	// as an alternative of SPA you can take a look at the /routing/dynamic-path/root-wildcard
-	// example too
-	// or
-	// app.StaticEmbedded if you don't want to redirect on index.html and simple serve your SPA app (recommended).
 
-	// public/index.html is a dynamic view, it's handled by root,
-	// and we don't want to be visible as a raw data, so we will
-	// the return value of `app.SPA` to modify the `IndexNames` by;
 	app.SPA(assetHandler).AddIndexName("index.html")
 
 	return app
@@ -52,15 +63,6 @@ func main() {
 		app.Logger().Fatal(err)
 	}
 
-	// Creating MVC Controller
-	mvc.New(app).Handle(new(APIController))
-
-	//// Register the templates/**.html as django and reload them on each request
-	//// so changes can be reflected, set to false on production.
-	//app.RegisterView(iris.Django("./templates", ".html").Reload(true))
-
-	app.StaticEmbedded("/","./client/build", Asset, AssetNames)
-
 	// Shutdown Callback
 	app.ConfigureHost(func(h *iris.Supervisor) {
 		h.RegisterOnShutdown(func() {
@@ -68,13 +70,55 @@ func main() {
 		})
 	})
 
+
+	// ---- Serve our controllers. ----
+
+	// Prepare our repositories and services.
+	db, err := datasource.LoadUsers(datasource.Memory)
+	if err != nil {
+		app.Logger().Fatalf("error while loading the users: %v", err)
+		return
+	}
+	repo := repositories.NewUserRepository(db)
+	userService := services.NewUserService(repo)
+
+	// "/users" based mvc application.
+	users := mvc.New(app.Party("/users"))
+	// Add the basic authentication(admin:password) middleware
+	// for the /users based requests.
+	users.Router.Use(middleware.BasicAuth)
+	// Bind the "userService" to the UserController's Service (interface) field.
+	users.Register(userService)
+	users.Handle(new(controllers.UsersController))
+
+	// "/user" based mvc application.
+	sessManager := sessions.New(sessions.Config{
+		Cookie:  "sessioncookiename",
+		Expires: 24 * time.Hour,
+	})
+	user := mvc.New(app.Party("/user"))
+	user.Register(
+		userService,
+		sessManager.Start,
+	)
+	user.Handle(new(controllers.UserController))
+
+
 	// Error Handling Client Error
 	app.OnErrorCode(iris.StatusNotFound, notFound)
 	// Error Handling Internal Error
 	app.OnErrorCode(iris.StatusInternalServerError, internalServerError)
 
 	log.Fatal(app.Run(iris.Listener(l)))
-	app.Run(iris.Listener(l))
+	app.Run(
+		iris.Listener(l),
+		// Disables the updater.
+		iris.WithoutVersionChecker,
+		// Ignores err server closed log when CTRL/CMD+C pressed.
+		iris.WithoutServerError(iris.ErrServerClosed),
+		// Enables faster json serialization and more.
+		iris.WithOptimizations,
+		)
 
 }
 
@@ -102,5 +146,5 @@ func internalServerError(ctx iris.Context) {
 }
 func notFound(ctx iris.Context) {
 	// when 404 then render the template $views_dir/errors/404.html
-	ctx.WriteString("Error 404 - URI Path does not in API")
+	ctx.WriteString("Error 404 - The page you're looking for doesn't exist...")
 }

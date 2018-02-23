@@ -3,7 +3,7 @@
 ## What is jidoka-go-iris?
     * 🐳 Dockerized Golang + Iris + Create-React-App that is deployable to Heroku
     * Uses Iris Web Framework - https://github.com/kataras/iris
-    * Premade Iris RESTAPI
+    * Premade Iris MVC Login API - https://github.com/iris-contrib/examples/tree/master/mvc/login
     * Uses 'dep' - Go Package manager
     * Uses Node.js for easy deployment scripts ❤️
     * Uses go-bindata to convert create-react-app build to readable go source
@@ -81,7 +81,7 @@ $ docker login --username=yourhubusername
 $ npm run dev
 ```
 
-11. Build/Rebuild and Deploy/Redeploy App to Heroku (Requires Steps 1 - 8)
+11. Build/Rebuild and Deploy/Redeploy App to Heroku (Requires Steps 1 - 9)
 ```bash
 $ npm run deploy
 ```
@@ -106,6 +106,7 @@ $ npm run docker-run-image
     * Changes made to Create-React-App:
     -- Added the "Proxy" to direct api/* to server in client/package.json
     -- Added "512x512 192x192" sizes to client/public/manifest.json for 100 PWA Score
+    -- Added /public/user/* for MVC API Demo
 
 ## Developer Notes & Tips
     * Use the 'docker-clean' Node.js Script to stop and delete all old docker images

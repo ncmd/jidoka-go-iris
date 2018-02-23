@@ -53,15 +53,28 @@
 
 [[projects]]
   branch = "master"
+  name = "github.com/iris-contrib/examples"
+  packages = [
+    "mvc/login/datamodels",
+    "mvc/login/datasource",
+    "mvc/login/repositories",
+    "mvc/login/services",
+    "mvc/login/web/controllers",
+    "mvc/login/web/middleware"
+  ]
+  revision = "2a3977fa181907a15ed5e91ec36e74ba2d47215e"
+
+[[projects]]
+  branch = "master"
   name = "github.com/iris-contrib/formBinder"
   packages = ["."]
   revision = "ad9fb86c356f971f30319c40ddbdcf72129a2791"
 
 [[projects]]
-  branch = "master"
   name = "github.com/json-iterator/go"
   packages = ["."]
-  revision = "414d0307c9b61145ac17cb87b2d00d3dae6babbe"
+  revision = "0ac74bba4a81211b28e32ef260c0f16ae41f1377"
+  version = "1.1.1"
 
 [[projects]]
   branch = "master"
@@ -103,6 +116,7 @@
     "core/router/node",
     "hero",
     "hero/di",
+    "middleware/basicauth",
     "middleware/logger",
     "middleware/recover",
     "mvc",
@@ -200,8 +214,8 @@
     "concurrent",
     "reflect2"
   ]
-  revision = "571356917fca907b069b7b47a14cd32ba0b340d4"
-  version = "0.9.0"
+  revision = "10fc95fad3224a032229e59f6e7023137d82b526"
+  version = "0.9.1"
 
 [[projects]]
   branch = "master"
@@ -214,9 +228,11 @@
   name = "golang.org/x/crypto"
   packages = [
     "acme",
-    "acme/autocert"
+    "acme/autocert",
+    "bcrypt",
+    "blowfish"
   ]
-  revision = "432090b8f568c018896cd8a0fb0345872bbac6ce"
+  revision = "49796115aa4b964c318aad4f3084fdb41e9aa067"
 
 [[projects]]
   branch = "master"
@@ -231,7 +247,7 @@
   branch = "master"
   name = "golang.org/x/sys"
   packages = ["unix"]
-  revision = "37707fdb30a5b38865cfb95e5aab41707daec7fd"
+  revision = "c1138c84af3a9927aee1a1b8b7ce06c9b7ea52bc"
 
 [[projects]]
   branch = "v2"
@@ -248,6 +264,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "abe9858653bcb3ccaa545b34d4f1f6461242b4ad4b88863363f0ba5dd2eb248a"
+  inputs-digest = "cc6d939ac1006879d518fc5acfbd33cd06aa4532060a70f8616ee5b091c6800c"
   solver-name = "gps-cdcl"
   solver-version = 1
