@@ -19,7 +19,9 @@ import (
 	"log"
 )
 
+
 func newApp() *iris.Application {
+
 
 	app := iris.New()
 
@@ -29,10 +31,11 @@ func newApp() *iris.Application {
 
 	app.RegisterView(iris.HTML("./client/build", ".html").Binary(Asset, AssetNames))
 
-
 	app.Get("/", func(ctx iris.Context) {
 		ctx.View("index.html")
 	})
+
+	mvc.New(app).Handle(new(APIController))
 
 	assetHandler := app.StaticEmbeddedHandler("./client/build", Asset, AssetNames)
 
@@ -73,6 +76,7 @@ func main() {
 
 	// ---- Serve our controllers. ----
 
+
 	// Prepare our repositories and services.
 	db, err := datasource.LoadUsers(datasource.Memory)
 	if err != nil {
@@ -102,8 +106,6 @@ func main() {
 		sessManager.Start,
 	)
 	user.Handle(new(controllers.UserController))
-
-
 	// Error Handling Client Error
 	app.OnErrorCode(iris.StatusNotFound, notFound)
 	// Error Handling Internal Error
@@ -127,6 +129,7 @@ type APIController struct {}
 
 // GET: /api
 func (c *APIController) GetApi() string {
+	firestore()
 	return "Welcome to Jidoka API"
 }
 

@@ -34,6 +34,7 @@
     "dev-github": "git init ; git add . ; git commit -m \"Init Project\"; git remote add origin $npm_package_config_githubprojectname ; git remote -v ; git push -u origin master"
   },
   "dependencies": {
-    "concurrently": "^3.5.1"
+    "concurrently": "^3.5.1",
+    "materialize-css": "^0.100.2"
   }
 }

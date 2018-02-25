@@ -30,9 +30,18 @@
     "preact-render-spy": "^1.2.1"
   },
   "dependencies": {
+    "axios": "^0.18.0",
+    "material-ui": "^1.0.0-beta.34",
+    "material-ui-icons": "^1.0.0-beta.17",
     "preact": "^8.2.6",
     "preact-compat": "^3.17.0",
-    "preact-router": "^2.5.7"
+    "preact-redux": "^2.0.3",
+    "preact-router": "^2.5.7",
+    "react-redux": "^5.0.7",
+    "redux": "^3.7.2",
+    "redux-form": "^7.2.3",
+    "redux-thunk": "^2.2.0",
+    "typeface-roboto": "0.0.54"
   },
   "jest": {
     "verbose": true,

@@ -12,3 +12,6 @@
   root-package = "github.com/ncmd/jido-go-iris"
   go-version = "1.10"
   install = [ "." ]
+[[constraint]]
+  name = "firebase.google.com/go"
+  version = "2.5.0"

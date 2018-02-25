@@ -10,3 +10,5 @@ client/node_modules
 *node_modules*
 *node_modules/**/*
 ./app
+./firestore.json
+*firestore.json*

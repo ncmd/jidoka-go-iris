@@ -3,7 +3,6 @@ package controllers
 import (
 	"github.com/iris-contrib/examples/mvc/login/datamodels"
 	"github.com/iris-contrib/examples/mvc/login/services"
-
 	"github.com/kataras/iris"
 )
 

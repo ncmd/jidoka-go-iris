@@ -11,8 +11,3 @@ type Runbook struct {
 	Description		string    `json:"description" form:"description"`
 	CreatedAt		time.Time `json:"created_at" form:"created_at"`
 }
-
-// IsValid can do some very very simple "low-level" data validations.
-func (r Runbook) IsValid() bool {
-	return r.ID > 0
-}
