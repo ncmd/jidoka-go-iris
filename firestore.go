@@ -36,6 +36,10 @@ func firestore() {
 
 	fmt.Println("All Runbooks:")
 	iter := client.Collection("runbooks").Documents(ctx)
+
+	var runbookArray = []map[string]string{}
+	var counter int = 0
+
 	for {
 		doc, err := iter.Next()
 		if err == iterator.Done {
@@ -57,7 +61,18 @@ func firestore() {
 		if err := doc.DataTo(&runbookData); err != nil {
 			fmt.Println("Error Occured")
 		}
+		runbookArray[counter] = map[string]string{
+			"id":doc.Ref.ID,
+			"title":runbookData.Title,
+			"image":runbookData.Image,
+			"creator":runbookData.Creator,
+			"dateCreated":runbookData.Datecreated,
+			}
 
-		fmt.Println("Data:",doc.Ref.ID)
+			counter++
+			fmt.Println("counter: ",counter)
+
 	}
+
+	fmt.Println("Runbook Array:",runbookArray)
 }
