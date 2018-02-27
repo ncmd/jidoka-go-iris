@@ -17,6 +17,14 @@ import (
 
 	"os"
 	"log"
+	"fmt"
+	"google.golang.org/api/option"
+	"firebase.google.com/go"
+	"google.golang.org/api/iterator"
+	"cloud.google.com/go/firestore"
+	"context"
+	"encoding/json"
+
 )
 
 
@@ -127,20 +135,97 @@ func main() {
 // Creating MVC Controller Type
 type APIController struct {}
 
-// GET: /api
-func (c *APIController) GetApi() string {
-	firestore()
-	return "Welcome to Jidoka API"
-}
+// GET: /api/runbooks
+func (c *APIController) GetApiRunbooks() string {
 
-// GET: /api/{string}
-func (c *APIController) GetApiBy(name string) string {
-	return "Hello " + name
-}
+	ctx := context.Background()
+	// Use a service account
+	sa := option.WithCredentialsFile("./firestore.json")
+	app, err := firebase.NewApp(ctx, nil, sa)
+	if err != nil {
+		log.Fatalln(err)
+	}
 
-// GET: /api/hello
-func (c *APIController) GetApiHello() interface{} {
-	return map[string]string{"message": "Hello Iris!"}
+	client, err := app.Firestore(ctx)
+	if err != nil {
+		log.Fatalln(err)
+	}
+	defer client.Close()
+
+	var counter int = 0
+
+	iter := client.Collection("runbooks").OrderBy("dateCreated", firestore.Desc ).Documents(ctx)
+
+	type Runbook struct {
+		Id 			string	`json:"id"`
+		Index 		int		`json:"index"`
+		Title		string	`json:"title"`
+		Description	string	`json:"description"`
+		Image		string	`json:"image"`
+		Type		string	`json:"type"`
+		Views		int		`json:"views"`
+		Answers		int		`json:"answers"`
+		Upvotes		int		`json:"upvotes"`
+		Downvotes	int		`json:"downvotes"`
+		Datecreated	int		`json:"dateCreated"`
+		Comments 	int		`json:"comments"`
+	}
+
+	// Writing an array of maps
+	// https://stackoverflow.com/questions/23066758/how-can-i-write-an-array-of-maps-golang
+	//rbArray := make(map[int][]Runbook)
+	var a []Runbook
+
+	for {
+		doc, err := iter.Next()
+		if err == iterator.Done {
+			break
+		}
+		if err != nil {
+			fmt.Println("Error:",err)
+		}
+
+		var runbookData Runbook
+
+		if err := doc.DataTo(&runbookData); err != nil {
+			fmt.Println("Error Occured", err)
+		}
+
+		var runbooks = []Runbook{
+			{
+				Id:doc.Ref.ID,
+				Index: counter,
+				Title:runbookData.Title,
+				Description:runbookData.Description,
+				Image:runbookData.Image,
+				Views:runbookData.Views,
+				Answers:runbookData.Answers,
+				Upvotes:runbookData.Upvotes,
+				Downvotes:runbookData.Downvotes,
+				Datecreated: runbookData.Datecreated,
+				Comments:runbookData.Comments,
+			},
+		}
+		// Concatenating Slices using '...'
+		// https://stackoverflow.com/questions/16248241/concatenate-two-slices-in-go
+		//rbArray[counter] = append(rbAraray[counter], runbooks...)
+		a = append(a, runbooks...)
+		counter++
+
+		//fmt.Println("DATA:",a)
+	}
+
+	// Prettify JSON data when in Console
+	b, err := json.MarshalIndent(a,"","  ")
+	if err != nil {
+		fmt.Println("error:",err)
+	}
+
+	allRunbooks := func() string{
+		return string(b)
+	}
+	fmt.Println("Data: " +string(b))
+	return allRunbooks()
 }
 
 // Error Handling for Internal Server Error

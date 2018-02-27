@@ -11,9 +11,6 @@
     "lint": "eslint src",
     "test": "jest ./tests"
   },
-  "/*": {
-    "target": "http://localhost:8000"
-  },
   "eslintConfig": {
     "extends": "eslint-config-synacor"
   },

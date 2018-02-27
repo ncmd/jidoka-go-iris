@@ -10,3 +10,5 @@ node_modules
 dev.js
 /config/dev.js
 ./config/dev.js
+*firestore.json*
+./firestore.json*
