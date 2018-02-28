@@ -28,7 +28,7 @@
     "dockerhub-push": "docker push $npm_package_config_dockerhubusername/$npm_package_config_servername",
     "docker-build": "export GOPATH=$HOME/go ; npm run build-client && dep ensure -update && rm -rf ./app ; docker build -t $npm_package_config_servername .",
     "docker-clean": "docker stop $(docker ps -a -q) ; docker rm $(docker ps -a -q) -f ; docker rmi $(docker images -q) -f",
-    "build-client": "npm erun build --prefix client && go-bindata ./client/build/...",
+    "build-client": "npm run build --prefix client && go-bindata ./client/build/...",
     "dev-latest": "brew update && brew upgrade && brew install dep && brew install git && brew install go && sudo npm install -g npm ; npm run dev-env",
     "dev-env": "npm install && export GOPATH=$HOME/go && export PATH=$PATH:$GOPATH/bin",
     "dev-github": "git init ; git add . ; git commit -m \"Init Project\"; git remote add origin $npm_package_config_githubprojectname ; git remote -v ; git push -u origin master"
