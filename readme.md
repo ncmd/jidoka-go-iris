@@ -17,7 +17,6 @@
     -- 88 Best Practices (Heroku does not support HTTP/2 yet...)
 
 ## Getting Started
-
 * If you want to run this for dev mode follow steps 1, 2, and 10
 * If you want to just run the Docker Image follow step 12
 * If you want to deploy this to git/github, dockerhub, heroku, follow all steps
@@ -63,8 +62,6 @@ $ go get -u github.com/jteeuwen/go-bindata/...
 ```
 
 7. Install Docker 🐳 Stable (Edge not tested)
-    * https://www.docker.com/get-docker
-    * Run Docker, confirm it is running
 
 8. Login to Heroku
 ```bash
@@ -82,6 +79,7 @@ $ npm run dev
 ```
 
 11. Build/Rebuild and Deploy/Redeploy App to Heroku (Requires Steps 1 - 9)
+* 🔥⚠️ WARNING ⚠️🔥 - This script is set to remove all existing docker containers & images
 ```bash
 $ npm run deploy
 ```
@@ -114,7 +112,6 @@ $ npm run docker-run-image
     -- $ npm install -g create-react-app
     -- $ create-react-app client
     * Always make sure the $GOPATH/bin is added to PATH on local machine (Otherwise will have problems with generating bindata.go)
-    -- $ export GOPATH=$HOME/go
     -- $ export PATH=$PATH:/Users/<username>/go/bin
     * Always confirm Docker is RUNNING
     * In the .dockerignore file ALWAYS have node_modules folder included (All regenerated when client is built)

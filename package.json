@@ -35,6 +35,7 @@
   },
   "dependencies": {
     "concurrently": "^3.5.1",
-    "materialize-css": "^0.100.2"
+    "servername":"jidoka-go-iris",
+    "servport":"8000"
   }
 }

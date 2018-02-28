@@ -123,10 +123,14 @@
   revision = "ad9fb86c356f971f30319c40ddbdcf72129a2791"
 
 [[projects]]
-  branch = "master"
   name = "github.com/json-iterator/go"
   packages = ["."]
+<<<<<<< HEAD
   revision = "fff342fd040c4460be37f6f98413e73eff0ac3ff"
+=======
+  revision = "e7c7f3b33712573affdcc7a107218e7926b9a05b"
+  version = "1.0.6"
+>>>>>>> parent of 3ac9317... Deployed Build
 
 [[projects]]
   branch = "master"
@@ -267,6 +271,7 @@
   revision = "86672fcb3f950f35f2e675df2240550f2a50762f"
 
 [[projects]]
+<<<<<<< HEAD
   name = "github.com/v2pro/plz"
   packages = [
     "concurrent",
@@ -276,6 +281,8 @@
   version = "0.9.1"
 
 [[projects]]
+=======
+>>>>>>> parent of 3ac9317... Deployed Build
   branch = "master"
   name = "github.com/valyala/tcplisten"
   packages = ["."]
