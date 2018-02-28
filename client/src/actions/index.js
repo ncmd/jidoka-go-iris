@@ -42,9 +42,17 @@ export const fetchSurveys = () => dispatch => {
 };
 
 export const fetchRunbooks = () => dispatch => {
-    const res = axios.get('/api/runbooks');
-    dispatch({ type: FETCH_RUNBOOKS, payload: res.data });
-    console.log("RES DATA:",res.data)
+
+    return Promise.resolve().then(function() {
+        return axios.get('/api/runbooks')
+    }).then(function(e) {
+        return e.text()
+    })
+
+
+    // const res = axios.get('/api/runbooks');
+    // dispatch({ type: FETCH_RUNBOOKS, payload: res.data });
+    // console.log("RES DATA:",res.data)
 };
 
 export const fetchSearchRunbook = runbookId => dispatch => {
