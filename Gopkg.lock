@@ -15,8 +15,8 @@
     "internal/version",
     "storage"
   ]
-  revision = "767c40d6a2e058483c25fa193e963a22da17236d"
-  version = "v0.18.0"
+  revision = "20d4028b8a750c2aca76bf9fefa8ed2d0109b573"
+  version = "v0.19.0"
 
 [[projects]]
   name = "firebase.google.com/go"
@@ -114,7 +114,7 @@
     "mvc/login/web/controllers",
     "mvc/login/web/middleware"
   ]
-  revision = "2a3977fa181907a15ed5e91ec36e74ba2d47215e"
+  revision = "577e4c3d762afdb8d218eac1b47021e6a15c8bda"
 
 [[projects]]
   branch = "master"
@@ -123,14 +123,10 @@
   revision = "ad9fb86c356f971f30319c40ddbdcf72129a2791"
 
 [[projects]]
+  branch = "master"
   name = "github.com/json-iterator/go"
   packages = ["."]
-<<<<<<< HEAD
-  revision = "fff342fd040c4460be37f6f98413e73eff0ac3ff"
-=======
-  revision = "e7c7f3b33712573affdcc7a107218e7926b9a05b"
-  version = "1.0.6"
->>>>>>> parent of 3ac9317... Deployed Build
+  revision = "2a93f9003e4f0b57063fcd849d92581f9c48fdcf"
 
 [[projects]]
   branch = "master"
@@ -250,7 +246,7 @@
   branch = "master"
   name = "github.com/ncmd/jidoka-go-iris"
   packages = ["datamodels"]
-  revision = "6ee1158919f754cf366dadb48e378fcc87ea1d36"
+  revision = "218bf6ef33f5fa37ce8c21879798b5d79b5b8b65"
 
 [[projects]]
   branch = "master"
@@ -271,7 +267,6 @@
   revision = "86672fcb3f950f35f2e675df2240550f2a50762f"
 
 [[projects]]
-<<<<<<< HEAD
   name = "github.com/v2pro/plz"
   packages = [
     "concurrent",
@@ -281,8 +276,6 @@
   version = "0.9.1"
 
 [[projects]]
-=======
->>>>>>> parent of 3ac9317... Deployed Build
   branch = "master"
   name = "github.com/valyala/tcplisten"
   packages = ["."]
@@ -297,7 +290,7 @@
     "bcrypt",
     "blowfish"
   ]
-  revision = "49796115aa4b964c318aad4f3084fdb41e9aa067"
+  revision = "8c653846df49742c4c85ec37e5d9f8d3ba657895"
 
 [[projects]]
   branch = "master"
@@ -326,13 +319,13 @@
     "jws",
     "jwt"
   ]
-  revision = "543e37812f10c46c622c9575afd7ad22f22a12ba"
+  revision = "d7d64896b5ff88e703f289390e3e98cd010a837e"
 
 [[projects]]
   branch = "master"
   name = "golang.org/x/sys"
   packages = ["unix"]
-  revision = "c1138c84af3a9927aee1a1b8b7ce06c9b7ea52bc"
+  revision = "f6cff0780e542efa0c8e864dc8fa522808f6a598"
 
 [[projects]]
   name = "golang.org/x/text"
@@ -403,7 +396,7 @@
     "googleapis/rpc/status",
     "googleapis/type/latlng"
   ]
-  revision = "2b5a72b8730b0b16380010cfe5286c42108d88e7"
+  revision = "2d9486acae19cf9bd0c093d7dc236a323726a9e4"
 
 [[projects]]
   name = "google.golang.org/grpc"
@@ -440,17 +433,17 @@
   branch = "v2"
   name = "gopkg.in/russross/blackfriday.v2"
   packages = ["."]
-  revision = "119f356b88f847465545338f0108347453ae0b03"
+  revision = "cfdcce51965fe68951a5fa45454aa6278c3f9614"
 
 [[projects]]
-  branch = "v2"
   name = "gopkg.in/yaml.v2"
   packages = ["."]
-  revision = "d670f9405373e636a5a2765eea47fac0c9bc91a4"
+  revision = "7f97868eec74b32b0982dd158a51a446d1da7eb5"
+  version = "v2.1.1"
 
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "f2133bca468f632aa73da9309ba2aa44b368af4a0a3c9759d2bd294272e6d4b6"
+  inputs-digest = "812c163e34f0efb8b9efc84a4600def587daefa9a883ae2e8c22e0b944164a1d"
   solver-name = "gps-cdcl"
   solver-version = 1
