@@ -46,7 +46,7 @@ export const fetchRunbooks = () => dispatch => {
     return Promise.resolve().then(function() {
         return axios.get('/api/runbooks')
     }).then(function(e) {
-        return e.text()
+        dispatch({ type: FETCH_RUNBOOKS, payload: e.data });
     })
 
 
