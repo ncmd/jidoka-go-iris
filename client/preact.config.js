@@ -2,7 +2,7 @@ import asyncPlugin from 'preact-cli-plugin-async';
 
 export default config => {
     asyncPlugin(config);
-    if (process.env.NODE_ENV === 'undefined' || process.env.NODE_ENV === 'development'){
+    if (process.env.NODE_ENV === 'undefined'){
         config.devServer.proxy = [
             {
                 path: '/api/**',
