@@ -1,9 +1,4 @@
 {
-<<<<<<< HEAD
-=======
-  "name": "client",
-  "version": "0.1.0",
->>>>>>> parent of 3ac9317... Deployed Build
   "private": true,
   "name": "client",
   "version": "0.0.0",
@@ -46,7 +41,6 @@
     "redux-thunk": "^2.2.0",
     "typeface-roboto": "0.0.54"
   },
-<<<<<<< HEAD
   "jest": {
     "verbose": true,
     "setupFiles": [
@@ -70,12 +64,5 @@
       "^create-react-class$": "preact-compat/lib/create-react-class",
       "^react-addons-css-transition-group$": "preact-css-transition-group"
     }
-=======
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
->>>>>>> parent of 3ac9317... Deployed Build
   }
 }
