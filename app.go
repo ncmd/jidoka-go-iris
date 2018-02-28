@@ -175,7 +175,7 @@ func (c *APIController) GetApiRunbooks() string {
 	// https://stackoverflow.com/questions/23066758/how-can-i-write-an-array-of-maps-golang
 	//rbArray := make(map[int][]Runbook)
 	var a []Runbook
-
+	var runbookData Runbook
 	for {
 		doc, err := iter.Next()
 		if err == iterator.Done {
@@ -185,7 +185,7 @@ func (c *APIController) GetApiRunbooks() string {
 			fmt.Println("Error:",err)
 		}
 
-		var runbookData Runbook
+
 
 		if err := doc.DataTo(&runbookData); err != nil {
 			fmt.Println("Error Occured", err)
@@ -224,7 +224,7 @@ func (c *APIController) GetApiRunbooks() string {
 	allRunbooks := func() string{
 		return string(b)
 	}
-	fmt.Println("Data: " +string(b))
+	fmt.Println("Data: " + string(b))
 	return allRunbooks()
 }
 

@@ -1,4 +1,4 @@
-# Fullstack: Dockerized Golang + Iris + API + Preact + Heroku
+# Fullstack: Dockerized Golang + Iris + API + Preact + Heroku + Firestore
 
 ## What is jidoka-go-iris?
     * 🐳 Dockerized Golang + Iris + Preact that is deployable to Heroku
@@ -108,7 +108,7 @@ $ npm run docker-run-image
     -- Added "512x512 192x192" sizes to client/public/manifest.json for 100 PWA Score
     -- Added /public/user/* for MVC API Demo
 
-## Developer Notes & Tips
+## Developer Notes & Tips - DevOps
     * Use the 'docker-clean' Node.js Script to stop and delete all old docker images
     * Again, the whole 'client' directory was genereated by (included when installing create-react-app from npm):
     -- $ npm install -g create-react-app
@@ -127,6 +127,34 @@ $ npm run docker-run-image
     -- $ dep ensure -update github.com/foo/bar
     * When making changes to React App Client, always regenerate bindata.go file (Already done in package.json script)
     -- $ go-bindata ./client/build/...
+
+## Developer Notes & Tips - Front-End
+    * Local Proxy is managed by the client/preact.config.js file
+    -- Adjust the 'path' and 'target' if you have a custom back-end uri or port
+    * Preact-Redux Notes:
+    -- 1. Provider is from 'preact-redux'
+    -- 2. 'react-redux' must be installed for redux to work
+    -- 3. ALWAYS use promises (async,await) in Actions to confirm data is received
+    -- 4. To create a new Action:
+    ---- Create a 'Type' in client/src/actions/types.js
+    ---- Import the 'Type' into client/src/actions/index.js
+    ---- Include the 'Type' in dispatch
+    ---- Create a reducer in client/src/reducers/name.js
+    ---- Add that reducer to CombinedReducers in client/src/reducers/index.js
+    -- 5. mapStateToProps is now '@connect(reduce, actions)' so you do not need to do mapStateToProps individually
+    -- 6. If you are using redux, always use {connect} from 'preact-redux'
+    
+## Developer Notes & Tips - Back-End
+    * All Code is in app.go
+    * To-do: Need to convert to MVC architecture
+    * Always separate functions
+    * func newApp():
+    -- Uses bindata.go
+    -- Maps to front-end build
+    -- Controls '/' Get Path to point to index.html
+    -- Creates an MVC to point to 'APIController' MVC Controller Type
+    -- Creates a Static Asset Handler to use all assets from ./client/build path
+    -- Defines app as a Single Page Application
 
 ## Scripts
     * dev - Runs both client and server without compiling/building supports hot changes
