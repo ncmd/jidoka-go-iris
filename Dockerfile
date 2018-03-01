@@ -17,6 +17,8 @@ COPY ./Gopkg.toml ./Gopkg.toml
 COPY ./package.json ./package.json
 COPY ./package-lock.json ./package-lock.json
 COPY ./Procfile ./Procfile
+COPY ./firestore.json ./firestore.json
+
 # Install all dependancies (vendor packages from 'dep' ; see 'Gopkg.toml' file)
 RUN go get -d -v ./...
 # Multi-Stage Build - Reference: https://flaviocopes.com/golang-docker/
