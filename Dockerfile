@@ -5,7 +5,18 @@ FROM golang:latest as builder
 # Location is taken using $GOPATH; Full Path '/Users/<user_name>/go/src/<project_name>
 WORKDIR /go/src/jidoka-go-iris
 # Copy everything from local directory to container directory
-COPY . .
+COPY ./client/build/ ./client/build/
+COPY ./client/package.json ./client/package.json
+COPY ./client/package-lock.json ./client/package-lock.json
+COPY ./client/preact.config.js ./client/preact.config.js
+COPY ./vendor ./vendor
+COPY ./app.go ./app.go
+COPY ./bindata.go ./bindata.go
+COPY ./Gopkg.lock ./Gopkg.lock
+COPY ./Gopkg.toml ./Gopkg.toml
+COPY ./package.json ./package.json
+COPY ./package-lock.json ./package-lock.json
+COPY ./Procfile ./Procfile
 # Install all dependancies (vendor packages from 'dep' ; see 'Gopkg.toml' file)
 RUN go get -d -v ./...
 # Multi-Stage Build - Reference: https://flaviocopes.com/golang-docker/
