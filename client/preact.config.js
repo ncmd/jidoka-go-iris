@@ -29,7 +29,7 @@ export default config => {
       config.devServer.proxy = [
         {
           path: '/api/**',
-          target: 'jidoka-go-iris.herokuapp.com',
+          target: 'https://jidoka-go-iris.herokuapp.com:'+process.env.PORT,
           type: 'proxy',
         },
       ];
