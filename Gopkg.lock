@@ -232,8 +232,8 @@
 [[projects]]
   name = "github.com/modern-go/concurrent"
   packages = ["."]
-  revision = "b889e4d97c66647327c9ee06ac249673a997db5f"
-  version = "1.0.1"
+  revision = "938152ca6a933f501bb238954eebd3cbcbf489ff"
+  version = "1.0.2"
 
 [[projects]]
   name = "github.com/modern-go/reflect2"

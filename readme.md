@@ -8,7 +8,7 @@
     * Uses Node.js for easy deployment scripts ❤️
     * Uses go-bindata to convert Preact App build to readable go source
     * Deployable to Heroku (Supports Free Teir) - heroku.com
-    * Uses Multi-Stage Builds to create a ~100MB Alpine Linux Image! (Trying to get it Smaller)
+    * Uses Multi-Stage Builds to create a ~50MB Alpine Linux Image! (Trying to get it Smaller)
     * Able to deploy Docker Image to Dockerhub
     * Progressive Web App Rating (On Heroku):
     -- 100 Portable Web Application
@@ -91,7 +91,7 @@ $ npm run docker-run-image
 ```
 
 ## Details
-    * Docker Image Size: ~100.0MB
+    * Docker Image Size: ~50.0MB
     * Fully loads client and server in ~1.5 Seconds | ~400ms
     * Dockerfile - File required for building docker image
     * package.json - Node.js deployments scripts
