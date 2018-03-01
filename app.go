@@ -1,17 +1,9 @@
 package main
 
 import (
-	"time"
-
-	"github.com/iris-contrib/examples/mvc/login/datasource"
-	"github.com/iris-contrib/examples/mvc/login/repositories"
-	"github.com/iris-contrib/examples/mvc/login/services"
-	"github.com/iris-contrib/examples/mvc/login/web/controllers"
-	"github.com/iris-contrib/examples/mvc/login/web/middleware"
 
 	"github.com/kataras/iris"
 	"github.com/kataras/iris/mvc"
-	"github.com/kataras/iris/sessions"
 
 	"github.com/valyala/tcplisten"
 
@@ -84,36 +76,6 @@ func main() {
 
 	// ---- Serve our controllers. ----
 
-
-	// Prepare our repositories and services.
-	db, err := datasource.LoadUsers(datasource.Memory)
-	if err != nil {
-		app.Logger().Fatalf("error while loading the users: %v", err)
-		return
-	}
-	repo := repositories.NewUserRepository(db)
-	userService := services.NewUserService(repo)
-
-	// "/users" based mvc application.
-	users := mvc.New(app.Party("/users"))
-	// Add the basic authentication(admin:password) middleware
-	// for the /users based requests.
-	users.Router.Use(middleware.BasicAuth)
-	// Bind the "userService" to the UserController's Service (interface) field.
-	users.Register(userService)
-	users.Handle(new(controllers.UsersController))
-
-	// "/user" based mvc application.
-	sessManager := sessions.New(sessions.Config{
-		Cookie:  "sessioncookiename",
-		Expires: 24 * time.Hour,
-	})
-	user := mvc.New(app.Party("/user"))
-	user.Register(
-		userService,
-		sessManager.Start,
-	)
-	user.Handle(new(controllers.UserController))
 	// Error Handling Client Error
 	app.OnErrorCode(iris.StatusNotFound, notFound)
 	// Error Handling Internal Error

@@ -1,16 +1,37 @@
-import asyncPlugin from 'preact-cli-plugin-async';
+import asyncPlugin from 'preact-cli-plugin-fast-async';
 
 export default config => {
     asyncPlugin(config);
-    if (process.env.NODE_ENV === 'undefined'){
+    if (process.env.NODE_ENV === 'development') {
         config.devServer.proxy = [
             {
+                // proxy requests matching a pattern:
                 path: '/api/**',
+
+                // where to proxy to:
                 target: 'http://localhost:8000',
                 type: 'proxy'
-            }
+            },
         ];
     }
 
-    console.log(process.env.NODE_ENV);
+    if (process.env.NODE_ENV === 'undefined') {
+      config.devServer.proxy = [
+        {
+          path: '/api/**',
+          target: 'http://localhost:8000',
+          type: 'proxy',
+        },
+      ];
+    }
+
+    if (process.env.NODE_ENV === 'production') {
+      config.devServer.proxy = [
+        {
+          path: '/api/**',
+          target: 'jidoka-go-iris.herokuapp.com',
+          type: 'proxy',
+        },
+      ];
+    }
 };
