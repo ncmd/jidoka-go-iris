@@ -1,14 +1,5 @@
 .env
 .idea
-.idea/
-.idea/**/*
-./node_modules/**/*
-./node_modules
-/node_modules
 node_modules
-*dev.js
-dev.js
 /config/dev.js
-./config/dev.js
 *firestore.json*
-./firestore.json*
