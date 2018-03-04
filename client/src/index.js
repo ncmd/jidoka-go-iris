@@ -1,7 +1,10 @@
 import { Provider } from 'preact-redux';
-import store from './store';
 import App from './components/app';
-import './style';
+import { createStore, applyMiddleware } from 'redux';
+import reducers from './reducers';
+import thunk from 'redux-thunk';
+const store = createStore(reducers, applyMiddleware(thunk));
+
 
 export default () => (
 	<div id="outer">

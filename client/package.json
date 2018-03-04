@@ -28,8 +28,13 @@
     "preact-cli-plugin-fast-async": "^1.0.1"
   },
   "dependencies": {
+    "axios": "^0.18.0",
+    "javascript-time-ago": "^1.0.28",
+    "material-ui": "^1.0.0-beta.35",
+    "material-ui-icons": "^1.0.0-beta.35",
     "preact": "^8.1.0",
     "preact-redux": "^1.2.0",
-    "redux": "^3.6.0"
+    "redux": "^3.6.0",
+    "redux-thunk": "^2.2.0"
   }
 }

@@ -15,7 +15,6 @@ import (
 	"google.golang.org/api/iterator"
 	"cloud.google.com/go/firestore"
 	"context"
-	"encoding/json"
 
 )
 
@@ -97,8 +96,24 @@ func main() {
 // Creating MVC Controller Type
 type APIController struct {}
 
+type Runbook struct {
+	Id 			string	`json:"id"`
+	Index 		int		`json:"index"`
+	Title		string	`json:"title"`
+	Description	string	`json:"description"`
+	Image		string	`json:"image"`
+	Type		string	`json:"type"`
+	Views		int		`json:"views"`
+	Answers		int		`json:"answers"`
+	Upvotes		int		`json:"upvotes"`
+	Downvotes	int		`json:"downvotes"`
+	Datecreated	int		`json:"dateCreated"`
+	Comments 	int		`json:"comments"`
+}
+
 // GET: /api/runbooks
-func (c *APIController) GetApiRunbooks() string {
+// Return type is []Runbook which is a slice which can be dynamic
+func (c *APIController) GetApiRunbooks() []Runbook {
 
 	ctx := context.Background()
 	// Use a service account
@@ -118,25 +133,8 @@ func (c *APIController) GetApiRunbooks() string {
 
 	iter := client.Collection("runbooks").OrderBy("dateCreated", firestore.Desc ).Documents(ctx)
 
-	type Runbook struct {
-		Id 			string	`json:"id"`
-		Index 		int		`json:"index"`
-		Title		string	`json:"title"`
-		Description	string	`json:"description"`
-		Image		string	`json:"image"`
-		Type		string	`json:"type"`
-		Views		int		`json:"views"`
-		Answers		int		`json:"answers"`
-		Upvotes		int		`json:"upvotes"`
-		Downvotes	int		`json:"downvotes"`
-		Datecreated	int		`json:"dateCreated"`
-		Comments 	int		`json:"comments"`
-	}
-
-	// Writing an array of maps
-	// https://stackoverflow.com/questions/23066758/how-can-i-write-an-array-of-maps-golang
-	//rbArray := make(map[int][]Runbook)
 	var a []Runbook
+
 	var runbookData Runbook
 	for {
 		doc, err := iter.Next()
@@ -146,8 +144,6 @@ func (c *APIController) GetApiRunbooks() string {
 		if err != nil {
 			fmt.Println("Error:",err)
 		}
-
-
 
 		if err := doc.DataTo(&runbookData); err != nil {
 			fmt.Println("Error Occured", err)
@@ -170,24 +166,13 @@ func (c *APIController) GetApiRunbooks() string {
 		}
 		// Concatenating Slices using '...'
 		// https://stackoverflow.com/questions/16248241/concatenate-two-slices-in-go
-		//rbArray[counter] = append(rbAraray[counter], runbooks...)
 		a = append(a, runbooks...)
 		counter++
-
-		//fmt.Println("DATA:",a)
 	}
 
-	// Prettify JSON data when in Console
-	b, err := json.MarshalIndent(a,"","  ")
-	if err != nil {
-		fmt.Println("error:",err)
-	}
+	// Return slice of runbooks
+	return a
 
-	allRunbooks := func() string{
-		return string(b)
-	}
-	fmt.Println("Data: " + string(b))
-	return allRunbooks()
 }
 
 // Error Handling for Internal Server Error
