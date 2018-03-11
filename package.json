@@ -16,7 +16,8 @@
     "dockerhubusername": "jidokaus"
   },
   "scripts": {
-    "dev": "export NODE_ENV=development  && concurrently \"npm run dev --prefix client\" \"rm -rf ./app ; go build *.go && ./app\"",
+    "dev": "export NODE_ENV=development  && concurrently \"npm run start --prefix client\" \"rm -rf ./app ; go build *.go && ./app\"",
+    "lambda":"GOOS=linux GOARCH=amd64 go build -o app *.go && zip app.zip app",
     "commit": "git add . && git commit -m \"Commit\"",
     "deploy": "npm run heroku-deploy && git rm -r --cached .idea ; git rm -r --cached .idea --prefix client ; git add . && git commit -am \"Deployed Build\" && git push ",
     "docker-test": "npm run docker-build && npm run docker-run",

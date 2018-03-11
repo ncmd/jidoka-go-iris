@@ -1,40 +1,44 @@
 {
-  "name": "preact-redux-example",
-  "version": "1.0.0",
-  "description": "Ready-to-go Preact + Redux starter project, powered by Preact CLI.",
-  "scripts": {
-    "start": "if-env NODE_ENV=production && npm run -s serve || npm run -s dev",
-    "build": "preact build",
-    "serve": "preact build && preact serve",
-    "dev": "export NODE_ENV=development && preact watch",
-    "lint": "eslint src"
-  },
-  "eslintConfig": {
-    "extends": "eslint-config-synacor"
-  },
-  "keywords": [
-    "preact",
-    "redux"
-  ],
-  "license": "MIT",
-  "author": "Jason Miller <jason@developit.ca>",
-  "devDependencies": {
-    "eslint": "^4.5.0",
-    "eslint-config-synacor": "^1.1.0",
-    "if-env": "^1.0.0",
-    "less": "^2.7.3",
-    "less-loader": "^4.0.5",
-    "preact-cli": "^2.0.0",
-    "preact-cli-plugin-fast-async": "^1.0.1"
+  "name": "client",
+  "version": "0.1.0",
+  "private": true,
+  "proxy": {
+    "/auth/google": {
+      "target": "http://localhost:8000"
+    },
+    "/api/*": {
+      "target": "http://localhost:8000"
+    }
   },
   "dependencies": {
-    "axios": "^0.18.0",
-    "javascript-time-ago": "^1.0.28",
-    "material-ui": "^1.0.0-beta.35",
-    "material-ui-icons": "^1.0.0-beta.35",
-    "preact": "^8.1.0",
-    "preact-redux": "^1.2.0",
-    "redux": "^3.6.0",
-    "redux-thunk": "^2.2.0"
+    "axios": "^0.17.1",
+    "es6-promise": "^4.2.2",
+    "isomorphic-fetch": "^2.2.1",
+    "javascript-time-ago": "^1.0.23",
+    "material-ui": "^1.0.0-beta.25",
+    "material-ui-icons": "^1.0.0-beta.17",
+    "materialize-css": "^0.100.2",
+    "mixpanel-browser": "^2.15.0",
+    "react": "^16.1.1",
+    "react-beautiful-dnd": "^3.0.0",
+    "react-dom": "^16.1.1",
+    "react-redux": "^5.0.6",
+    "react-router-dom": "^4.2.2",
+    "react-scripts": "1.0.17",
+    "react-select": "^1.2.1",
+    "react-stripe-checkout": "^2.6.3",
+    "redux": "^3.7.2",
+    "redux-form": "^7.2.0",
+    "redux-thunk": "^2.2.0",
+    "typeface-roboto": "0.0.45"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "devDependencies": {
+    "redux-devtools-extension": "^2.13.2"
   }
 }

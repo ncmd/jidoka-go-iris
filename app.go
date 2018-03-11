@@ -1,23 +1,18 @@
 package main
 
 import (
-
 	"github.com/kataras/iris"
 	"github.com/kataras/iris/mvc"
-
 	"github.com/valyala/tcplisten"
-
 	"os"
 	"log"
 	"fmt"
 	"google.golang.org/api/option"
-	"firebase.google.com/go"
 	"google.golang.org/api/iterator"
 	"cloud.google.com/go/firestore"
 	"context"
-
+	firebase "firebase.google.com/go"
 )
-
 
 func newApp() *iris.Application {
 
@@ -72,8 +67,10 @@ func main() {
 		})
 	})
 
-
-	// ---- Serve our controllers. ----
+	//https://docs.iris-go.com/routing_parameters.html
+	// Getting Runbook Details
+	app.Get("/api/runbooks", iris.Gzip , getRunbooks)
+	app.Get("/api/runbooks/{id:string}/details", iris.Gzip , selectRunbook)
 
 	// Error Handling Client Error
 	app.OnErrorCode(iris.StatusNotFound, notFound)
@@ -90,7 +87,6 @@ func main() {
 		// Enables faster json serialization and more.
 		iris.WithOptimizations,
 		)
-
 }
 
 // Creating MVC Controller Type
@@ -111,30 +107,47 @@ type Runbook struct {
 	Comments 	int		`json:"comments"`
 }
 
-// GET: /api/runbooks
-// Return type is []Runbook which is a slice which can be dynamic
-func (c *APIController) GetApiRunbooks() []Runbook {
+type Objective struct {
+	Expanded 	bool	`json:"expanded"`
+	Id 			int		`json:"id"`
+}
 
-	ctx := context.Background()
-	// Use a service account
+
+func getRb(rbid string){
+
+}
+
+func selectRunbook(ctx iris.Context){
 	sa := option.WithCredentialsFile("./firestore.json")
-	app, err := firebase.NewApp(ctx, nil, sa)
+	app, err := firebase.NewApp(context.Background(), nil, sa)
 	if err != nil {
 		log.Fatalln(err)
 	}
-
-	client, err := app.Firestore(ctx)
+	client, err := app.Firestore(context.Background())
 	if err != nil {
 		log.Fatalln(err)
 	}
 	defer client.Close()
 
+	dsnap, err := client.Collection("runbooks").Doc(ctx.Params().Get("id")).Get(context.Background())
+	m := dsnap.Data()
+	ctx.JSON(m)
+}
+
+func getRunbooks(ctx iris.Context){
+	sa := option.WithCredentialsFile("./firestore.json")
+	app, err := firebase.NewApp(context.Background(), nil, sa)
+	if err != nil {
+		log.Fatalln(err)
+	}
+	client, err := app.Firestore(context.Background())
+	if err != nil {
+		log.Fatalln(err)
+	}
+	defer client.Close()
 	var counter int = 0
-
-	iter := client.Collection("runbooks").OrderBy("dateCreated", firestore.Desc ).Documents(ctx)
-
+	iter := client.Collection("runbooks").OrderBy("dateCreated", firestore.Desc ).Documents(context.Background())
 	var a []Runbook
-
 	var runbookData Runbook
 	for {
 		doc, err := iter.Next()
@@ -144,11 +157,9 @@ func (c *APIController) GetApiRunbooks() []Runbook {
 		if err != nil {
 			fmt.Println("Error:",err)
 		}
-
 		if err := doc.DataTo(&runbookData); err != nil {
 			fmt.Println("Error Occured", err)
 		}
-
 		var runbooks = []Runbook{
 			{
 				Id:doc.Ref.ID,
@@ -169,10 +180,8 @@ func (c *APIController) GetApiRunbooks() []Runbook {
 		a = append(a, runbooks...)
 		counter++
 	}
-
-	// Return slice of runbooks
-	return a
-
+	// https://github.com/gauravtiwari/go_iris_app/blob/master/app.go
+	ctx.JSON(a)
 }
 
 // Error Handling for Internal Server Error
