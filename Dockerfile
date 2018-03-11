@@ -9,7 +9,6 @@ WORKDIR /go/src/jidoka-go-iris
 COPY ./client/build/ ./client/build/
 COPY ./client/package.json ./client/package.json
 COPY ./client/package-lock.json ./client/package-lock.json
-COPY ./client/preact.config.js ./client/preact.config.js
 COPY ./vendor ./vendor
 COPY ./app.go ./app.go
 COPY ./bindata.go ./bindata.go

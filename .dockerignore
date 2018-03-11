@@ -2,4 +2,3 @@
 .idea
 .env.development
 .env.production
-*firestore.json*
