@@ -1,6 +1,6 @@
 # Fullstack: Docker + Golang + Iris + API + React + Redux + Heroku + Firestore
 
-## Demo: https://jidoka-go-iris.herokuapp.com
+## This project is not maintained
 
 ## What is jidoka-go-iris?
     * A Fullstack 🐳 Dockerized React App deployable to Heroku
